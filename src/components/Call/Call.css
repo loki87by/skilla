@@ -1,0 +1,14 @@
+.Calls_content-item__call-icon {
+  width: 16px;
+  justify-self: flex-start;
+}
+
+.Calls_content-item__call-phone {
+  margin-left: 28px;
+}
+
+.Call_content-item__worker {
+  width: 32px !important;
+  height: 32px;
+  border-radius: 50%;
+}

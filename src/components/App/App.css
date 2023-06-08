@@ -1,0 +1,21 @@
+.App {
+  width: 100%;
+  max-width: 1920px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+aside {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  width: calc(100% / 8 * 7);
+  max-width: 1680px;
+  background-color: var(--bg-color);
+}

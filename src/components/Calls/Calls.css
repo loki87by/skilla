@@ -1,0 +1,82 @@
+.Calls {
+  width: 100%;
+  padding: 20px 120px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+}
+
+.Calls_info,
+.Calls_filters {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Calls_content {
+  width: 100%;
+  margin-block-start: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--front-color);
+}
+
+li {
+  width: 100%;
+  list-style: none;
+  /* padding-left: 12px; */
+}
+
+.Calls_content-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Calls_content-item__check {
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+}
+
+.Calls_content-item__type {
+  width: 23px;
+  margin-right: 30px;
+}
+
+.Calls_content-item__time {
+  width: 41px;
+  margin-right: 48px;
+}
+
+.Calls_content-item__worker {
+  width: 68px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Calls_content-item__call {
+  width: 296px;
+  margin-right: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Calls_content-item__src {
+  width: 200px;
+  margin-right: 14px;
+}
+
+.Calls_content-item__rating {
+  width: 146px;
+  margin-right: 52px;
+}
+
+.Calls_content-item__record {
+  width: 152px;
+  display: flex;
+  justify-content: flex-end;
+}

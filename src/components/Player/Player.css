@@ -1,0 +1,17 @@
+.Player {
+  width: 352px;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 48px;
+}
+
+.Player_duration {
+  margin-right: 12px;
+  font-family: 'SF Pro Display';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 145%;
+text-align: right;
+color: #122945;
+}
