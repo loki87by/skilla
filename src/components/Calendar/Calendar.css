@@ -1,0 +1,32 @@
+.Calendar {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid #000;
+  opacity: 0;
+  visibility: hidden;
+  background-color: var(--bg-color);
+  transition: all .5s ease-out;
+}
+
+.Calendar_opened {
+  top: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.Calendar-header {
+  display: flex;
+}
+
+table {
+  width: 100%;
+  margin: 0;
+}
+
+.Calendar-day {
+  text-align: center;
+}
+
+.Calendar-day_selected {
+  background-color: var(--secondary-color);
+}

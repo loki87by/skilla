@@ -7,11 +7,15 @@ import "./App.css";
 
 function App() {
   const [apiData, setApiData] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+    const [period, setPeriod] = useState(3);
+  console.log(startDate, endDate);
 
   useEffect(() => {
     getList("2023-06-02", "2023-06-07", "")
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setApiData(data.results);
       })
       .catch((err) => {
@@ -24,7 +28,15 @@ function App() {
       <aside></aside>
       <main>
         <Header />
-        <Calls apiData={apiData} />
+        <Calls
+          apiData={apiData}
+          startDate={startDate}
+          endDate={endDate}
+          period={period}
+                            setPeriod={setPeriod}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+        />
       </main>
     </>
   );

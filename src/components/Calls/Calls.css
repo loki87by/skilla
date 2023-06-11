@@ -14,6 +14,17 @@
   justify-content: flex-end;
 }
 
+.Calls_info-calendar {
+position: relative;
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+
+.Calls_info-calendar_icon {
+  margin-right: 8px;
+}
+
 .Calls_content {
   width: 100%;
   margin-block-start: 40px;
