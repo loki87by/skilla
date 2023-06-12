@@ -6,6 +6,7 @@ function Calendar(props) {
   const [rows, setRows] = useState(0);
   const [currentYear, setCurrentYear] = useState(2023);
   const [currentMonth, setCurrentMonth] = useState(5);
+  const [startDate, setStartDate] = useState(null);
   const [matrix, setMatrix] = useState([]);
   const [selectedDates, setSelectedDates] = useState([]);
   const today = new Date();
@@ -62,22 +63,24 @@ function Calendar(props) {
 
   function setCurrentDate(day) {
     const date = new Date(currentYear, currentMonth, day);
-
-    if (props.startDate === null) {
+    if (startDate === null) {
+      setStartDate(date);
       props.setStartDate(date);
       props.setEndDate(null);
       setSelectedDates([day]);
     } else {
-      if (date >= props.startDate) {
+      if (date >= startDate) {
         props.setEndDate(date);
       } else {
         props.setStartDate(date);
         props.setEndDate(props.startDate);
       }
-      const sorted = [date, props.startDate].sort();
+      const sorted = [date, startDate].sort();
       const period = Math.floor((sorted[1] - sorted[0]) / 3600 / 24000 + 1);
       props.setPeriod(period);
+      setStartDate(null);
       props.setCalendarOpen(false);
+      props.setSelectedItem("Даты")
       setSelectedDates([]);
     }
   }
@@ -126,14 +129,14 @@ function Calendar(props) {
   }
 
   function checkSelection(day) {
-    if (!props.startDate) {
+    if (!startDate) {
       return;
     } else {
-      setSelectedDates([props.startDate.getDate()]);
-      const sorted = [props.startDate.getDate(), day].sort((a, b) => {
+      setSelectedDates([startDate.getDate()]);
+      const sorted = [startDate.getDate(), day].sort((a, b) => {
         return a - b;
       });
-      const arr = [props.startDate.getDate()];
+      const arr = [startDate.getDate()];
       for (let i = sorted[0]; i <= sorted[1]; i++) {
         if (!arr.includes(i)) {
           const date = new Date(currentYear, currentMonth, i);

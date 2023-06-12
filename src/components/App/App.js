@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getList } from "../../utils/Api";
+import Menu from "../Menu/Menu";
 import Header from "../Header/Header";
 import Calls from "../Calls/Calls";
 import "../../vendor/normalize.css";
@@ -9,7 +10,7 @@ function App() {
   const [apiData, setApiData] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-    const [period, setPeriod] = useState(3);
+  const [period, setPeriod] = useState(3);
   console.log(startDate, endDate);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <>
-      <aside></aside>
+      <Menu />
       <main>
         <Header />
         <Calls
@@ -33,7 +34,7 @@ function App() {
           startDate={startDate}
           endDate={endDate}
           period={period}
-                            setPeriod={setPeriod}
+          setPeriod={setPeriod}
           setStartDate={setStartDate}
           setEndDate={setEndDate}
         />

@@ -4,14 +4,37 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-color);
+  background-color: #e5e5e5;
 }
 
 .Calls_info,
 .Calls_filters {
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+}
+
+.Calls_info-balance {
+  width: 145px;
+  height: 40px;
+  padding: 8px 12px;
+  margin-right: 48px;
+  border-radius: 48px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+}
+
+.Calls_info-balance-text {
+  color: #899cb1
+}
+
+.Calls_info-balance-button {
+  width: 24px;
+  height: 24px;
 }
 
 .Calls_info-calendar {
@@ -21,8 +44,71 @@ align-items: center;
 cursor: pointer;
 }
 
+.Calls_info-calendar_arrow-left {
+  transform: rotate(270deg);
+}
+
 .Calls_info-calendar_icon {
   margin-right: 8px;
+  margin-left: 22px;
+}
+
+.Calls_info-calendar_text {
+  margin-right: 22px;
+  color: #005ff8;
+}
+
+.Calls_info-calendar_arrow-right {
+  transform: rotate(90deg);
+}
+
+.Calls_info-calendar_select {
+  position: absolute;
+  top: calc(100% + 11px);
+  z-index: -1;
+  width: 204px;
+  height: 0;
+  border: 1px solid #eaf0fa;
+  border-radius: 4px;
+  box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  transition: height .6s linear;
+}
+
+.Calls_info-calendar_select_opened {
+  z-index: 0;
+  height: 239px;
+}
+
+.Calls_info-calendar_select-item {
+  width: 100%;
+  height: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #899cb1
+}
+
+.Calls_info-calendar_select_opened > .Calls_info-calendar_select-item {
+  height: 40px;
+  padding: 6px 20px;
+}
+
+.Calls_info-calendar_select-item:hover {
+  color: #122945;
+  background-color: #002cfb13;
+}
+
+.Calls_info-calendar_select-item:last-of-type {
+  height: 78px;
+  color: #122945e0
+}
+
+.Calls_info-calendar_select-item_current {
+  color: var(--secondary-color);
 }
 
 .Calls_content {
@@ -31,7 +117,7 @@ cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--front-color);
+  background-color: var(--bg-color);
 }
 
 li {

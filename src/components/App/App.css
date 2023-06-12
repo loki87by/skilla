@@ -6,16 +6,23 @@
   display: flex;
 }
 
-aside {
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
 main {
   position: relative;
   width: calc(100% / 8 * 7);
   max-width: 1680px;
+  padding-left: 240px;
   background-color: var(--bg-color);
+}
+
+.sprite{
+  cursor: pointer;
+    --primary: var(--primary-color);
+}
+
+.sprite:hover {
+  --primary: var(--secondary-color);
+}
+
+.sprite:active {
+  --primary: var(--third-color);
 }
