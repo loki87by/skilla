@@ -1,24 +1,48 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
+import { DATE_OPTIONS, debounce } from "../../utils/consts";
 import Call from "../Call/Call";
 import Calendar from "../Calendar/Calendar";
+import Filters from "../Filters/Filters";
+import Sprite from "../Sprite/Sprite";
 import calendar from "../../assets/calendar.svg";
 import arrow from "../../assets/arrow.svg";
+import cross from "../../assets/cross.svg";
 import balance from "../../assets/balance.svg";
+import search from "../../assets/search.svg";
 import "./Calls.css";
 
 function Calls(props) {
   const [clicked, setClicked] = useState(false);
   const [dateSelectIsOpen, setDateSelectOpen] = useState(false);
   const [calendarIsOpen, setCalendarOpen] = useState(false);
+  const [searchIsOpen, setSearchOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("3 дня");
+  const [searchValue, setSearchValue] = useState("+7");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const searchRef = useRef(null);/*
+  const filters = [
+
+    {text: 'Все звонки', key: 'from_type[]', values: [
+      {ru: 'Клиенты', en: 'clients'},
+      {ru: 'Новые клиенты', en: 'new_clients', styles: 'after'},
+      {ru: 'Рабочие', en: 'workers'},
+      {ru: 'Приложение', en: 'app'},]},
+    {text: 'Все источники', key: 'sources[]', values: [
+      {ru: 'С сайта', en: 'from_site'},
+      {ru: 'Yandex номер', en: 'yandex'},
+      {ru: 'Google номер', en: 'google'},
+      {ru: 'Без источника', en: 'empty'},]},
+    {text: 'Все оценки', key: 'errors[]', values: [
+      {ru: 'Без ошибок', en: 'noerrors'},
+      {ru: 'Скрипт не использован', en: 'noscript'}]},
+    {text: '', key: '', values: []}
+  ] */
 
   function showCalendar() {
     setDateSelectOpen(false);
     setCalendarOpen(true);
   }
-
   const calendarItems = useMemo(
     () => ["3 дня", "Неделя", "Месяц", "Год", "Указать даты"],
     []
@@ -26,6 +50,11 @@ function Calls(props) {
 
   function showDateSelect() {
     setDateSelectOpen(true);
+  }
+
+  function resetDates() {
+    setStartDate(null);
+    setEndDate(null);
   }
 
   useEffect(() => {
@@ -51,6 +80,10 @@ function Calls(props) {
       setStartDate(date);
     }
     setEndDate(today);
+    if (index === 4) {
+      setStartDate(null);
+      setEndDate(null);
+    }
   }, [calendarItems, selectedItem]);
 
   useEffect(() => {
@@ -62,68 +95,127 @@ function Calls(props) {
     }
   });
 
+  const showCurrentDates = () => {
+    const stringStart = new Intl.DateTimeFormat("ru-RU", DATE_OPTIONS)
+      .format(props.startDate)
+      .split(",")[1]
+      .slice(0, 9);
+    const stringEnd = new Intl.DateTimeFormat("ru-RU", DATE_OPTIONS)
+      .format(props.endDate)
+      .split(",")[1]
+      .slice(0, 9);
+    return `${stringStart}-${stringEnd}`;
+  };
+
+  function getSearchValue(e) {
+    const val = e ? e.replace(/\D/gi, "").slice(1).split("") : "";
+
+    if (val.length === 0) {
+      setSearchValue("+7");
+    } else if (val.length < 4) {
+      setSearchValue(`+7 (${e.replace(/\D/gi, "").slice(1)})`);
+    } else if (val.length < 7) {
+      setSearchValue(
+        `+7 (${e.replace(/\D/gi, "").slice(1, 4)}) ${e
+          .replace(/\D/gi, "")
+          .slice(4)}`
+      );
+    } else if (val.length < 9) {
+      setSearchValue(
+        `+7 (${e.replace(/\D/gi, "").slice(1, 4)}) ${e
+          .replace(/\D/gi, "")
+          .slice(4, 7)}-${e.replace(/\D/gi, "").slice(7)}`
+      );
+    } else {
+      setSearchValue(
+        `+7 (${e.replace(/\D/gi, "").slice(1, 4)}) ${e
+          .replace(/\D/gi, "")
+          .slice(4, 7)}-${e.replace(/\D/gi, "").slice(7, 9)}-${e
+          .replace(/\D/gi, "")
+          .slice(9, 11)}`
+      );
+    }
+  }
+
+  function checkSearchValue() {
+    if (searchValue.length < 9) {
+      const nums = searchValue.replace(/\D/gi, "");
+      const cutted = nums.slice(1, nums.length - 1);
+      if (nums.length > 2) {
+        setSearchValue(`+7 (${cutted})`);
+      } else {
+        setSearchValue("+7");
+      }
+    }
+  }
+
+  function openSearch() {
+    console.log(1);
+    setSearchOpen(true);
+  }
+
+  function closeSearch() {
+    console.log(0);
+    setSearchOpen(false);
+  }
+
+  useEffect(() => {
+    if (searchIsOpen) {
+      searchRef.current.focus();
+    }
+  });
+
+  useEffect(() => {
+    if (searchValue.length > 2) {
+      debounce(props.setSearch, 500, searchValue.replace(/\D/gi, ""));
+    }
+  });
+
   return (
     <section className="Calls">
       <article className="Calls_info">
         <div className="Calls_info-balance">
           <p className="Calls_info-balance-text">
-            Баланс: <span style={{ color: "#122945" }}>272 ₽</span>
+            Баланс: <span>272 ₽</span>
           </p>
           <img
             src={balance}
             alt="пополнить"
+            title="пополнить"
             className="Calls_info-balance-button"
           />
         </div>
         <div className="Calls_info-calendar">
-          <svg
-            src={arrow}
-            onClick={showDateSelect}
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            width="12"
-            height="8"
-            title="выбрать период"
-            className="sprite Calls_info-calendar_arrow-left"
-          >
-            <use
-              style={{ width: "12px", height: "8px" }}
-              href={`${arrow}#arrow`}
-            />
-          </svg>
-          <svg
-            onClick={showDateSelect}
-            src={calendar}
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            width="16"
-            height="18"
-            title="выбрать период"
-            className="sprite Calls_info-calendar_icon"
-          >
-            <use
-              style={{ width: "16px", height: "18px" }}
-              href={`${calendar}#calendar`}
-            />
-          </svg>
+              <Sprite
+                src={arrow}
+                click={showDateSelect}
+                class="Calls_info-calendar_arrow-left"
+                width="12"
+                height="8"
+                title="выбрать период"
+                id="arrow"
+              />
+              <Sprite
+                src={calendar}
+                click={showDateSelect}
+                class="Calls_info-calendar_icon"
+                width="16"
+                height="18"
+                title="выбрать период"
+                id="calendar"
+              />
           <p onClick={showDateSelect} className="Calls_info-calendar_text">
             {selectedItem}
           </p>
-          <svg
-            src={arrow}
-            onClick={showDateSelect}
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            width="12"
-            height="8"
-            title="выбрать период"
-            className="sprite Calls_info-calendar_arrow-right"
-          >
-            <use
-              style={{ width: "12px", height: "8px" }}
-              href={`${arrow}#arrow`}
-            />
-          </svg>
+              <Sprite
+                src={arrow}
+                click={showDateSelect}
+                class="Calls_info-calendar_arrow-right"
+                width="12"
+                height="8"
+                title="выбрать период"
+                id="arrow"
+              />
           <div
             className={`Calls_info-calendar_select ${
               dateSelectIsOpen && "Calls_info-calendar_select_opened"
@@ -139,6 +231,7 @@ function Calls(props) {
                 onClick={
                   index !== 4
                     ? () => {
+                        props.setPeriod(NaN);
                         setSelectedItem(item);
                         setDateSelectOpen(false);
                       }
@@ -146,6 +239,25 @@ function Calls(props) {
                 }
               >
                 <p>{item}</p>
+                {index === 4 ? (
+                  <>
+                    <p>
+                      {props.startDate && props.endDate && !isNaN(props.period)
+                        ? showCurrentDates()
+                        : "__.__.__-__.__.__"}
+                    </p>
+              <Sprite
+                src={calendar}
+                class="Calls_info-calendar_select-item_icon"
+                width="16"
+                height="18"
+                title="выбрать период"
+                id="calendar"
+              />
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
             ))}
           </div>
@@ -156,12 +268,61 @@ function Calls(props) {
             setStartDate={props.setStartDate}
             setEndDate={props.setEndDate}
             setPeriod={props.setPeriod}
+            resetDates={resetDates}
             setCalendarOpen={setCalendarOpen}
             setSelectedItem={setSelectedItem}
           />
         </div>
       </article>
-      <article className="Calls_filters"></article>
+      <article className="Calls_filters">
+        <div className="Calls_filters-search">
+              <Sprite
+                src={search}
+                click={openSearch}
+                class={`Calls_filters-search_icon ${
+                  searchIsOpen && "Calls_filters-search_icon-opened"
+                }`}
+                width="16"
+                height="16"
+                title="искать"
+                id="search"
+              />
+          {searchIsOpen ? (
+            <>
+              <input
+                ref={searchRef}
+                className="Calls_filters-search_input"
+                type="text"
+                value={searchValue}
+                onKeyUp={(e) => {
+                  if (e.key === "Backspace") {
+                    checkSearchValue();
+                  }
+                }}
+                onChange={(e) => {
+                  getSearchValue(e.target.value);
+                }}
+              />
+              <Sprite
+                src={cross}
+                click={closeSearch}
+                class="Calls_info-calendar_arrow-right"
+                width="4"
+                height="14"
+                title="закрыть"
+                id="cross"
+              />
+            </>
+          ) : (
+            <p className="Calls_filters-search_text" onClick={openSearch}>
+              Поиск по звонкам
+            </p>
+          )}
+        </div>
+        <div className="Calls_filters-params">
+<Filters filters={props.filters} setFilters={props.setFilters}/>
+        </div>
+      </article>
       <ul className="Calls_content">
         <li>
           <div className="Calls_content-item">

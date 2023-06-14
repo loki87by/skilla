@@ -1,0 +1,12 @@
+.Sprite{
+  cursor: pointer;
+    --primary: var(--primary-color);
+}
+
+.Sprite:hover {
+  --primary: var(--secondary-color);
+}
+
+.Sprite:active {
+  --primary: var(--third-color);
+}

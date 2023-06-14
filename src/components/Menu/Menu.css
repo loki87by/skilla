@@ -24,6 +24,14 @@
   align-items: center;
 }
 
+.Menu-item > p {
+  padding-top: 15px;
+  padding-bottom: 17px;
+  font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+}
+
 .Menu-item:last-of-type {
   margin-bottom: 64px;
 }

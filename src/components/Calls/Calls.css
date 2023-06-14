@@ -26,10 +26,19 @@
   align-items: center;
   justify-content: space-between;
   background-color: var(--bg-color);
+  cursor: pointer;
 }
 
 .Calls_info-balance-text {
-  color: #899cb1
+  color: #899cb1;
+}
+
+.Calls_info-balance-text > span {
+  color: #122945;
+}
+
+.Calls_info-balance-text > span:hover {
+  color: #0024cb;
 }
 
 .Calls_info-balance-button {
@@ -38,10 +47,10 @@
 }
 
 .Calls_info-calendar {
-position: relative;
-display: flex;
-align-items: center;
-cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .Calls_info-calendar_arrow-left {
@@ -74,11 +83,10 @@ cursor: pointer;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
-  transition: height .6s linear;
 }
 
 .Calls_info-calendar_select_opened {
-  z-index: 0;
+  z-index: 1;
   height: 239px;
 }
 
@@ -89,7 +97,7 @@ cursor: pointer;
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #899cb1
+  color: #899cb1;
 }
 
 .Calls_info-calendar_select_opened > .Calls_info-calendar_select-item {
@@ -99,16 +107,83 @@ cursor: pointer;
 
 .Calls_info-calendar_select-item:hover {
   color: #122945;
-  background-color: #002cfb13;
+  background-color: #0024cb21;
 }
 
 .Calls_info-calendar_select-item:last-of-type {
+  position: relative;
   height: 78px;
-  color: #122945e0
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: var(--secondary-color);
 }
 
 .Calls_info-calendar_select-item_current {
   color: var(--secondary-color);
+}
+
+.Calls_info-calendar_select-item > p {
+  font-size: 14px;
+  line-height: 2;
+}
+
+.Calls_info-calendar_select-item_icon {
+  position: absolute;
+  bottom: 26px;
+  right: 21px;
+}
+
+.Calls_filters {
+  margin-top: 24px;
+  justify-content: space-between;
+}
+
+.Calls_filters-search {
+  position: relative;
+  margin: 10px 0;
+  display: flex;
+}
+
+.Calls_filters-search_input {
+  width: 482px;
+  height: 40px;
+  padding: 10px 46px;
+  margin: -10px 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  border: 1px solid #eaf0fa;
+  border-radius: 48px;
+}
+
+.Calls_filters-search_input:focus {
+  outline: none !important;
+  border: 1px solid var(--secondary-color)
+}
+
+.Calls_filters-search_icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.Calls_filters-search_icon-opened {
+  top: 2px;
+  left: 18px;
+}
+
+.Calls_filters-search_text {
+  margin-left: 28px;
+  font-size: 14px;
+  line-height: 140%;
+  color: #5e7793;
+}
+
+.Calls_filters-search_close {
+  position: absolute;
+  top: 3px;
+  right: 17px;
+  z-index: 1;
 }
 
 .Calls_content {

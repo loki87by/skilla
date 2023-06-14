@@ -1,0 +1,26 @@
+.Filters,
+.Filters_button {
+  position: relative;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.Filters_button-text {
+  width: max-content;
+  margin-right: 8px;
+  font-family: 'SF Pro Display';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 148%;
+color: #5e7793;
+}
+
+.Filters_button-text:hover {
+  color: var(--secondary-color)
+}
+
+.Filters_button-icon {
+  transform: rotate(180deg);
+}

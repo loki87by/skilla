@@ -2,7 +2,7 @@ const BASE_URL = "https://api.skilla.ru/mango";
 const PARTNER_URL = "https://api.skilla.ru/partnership";
 const TOKEN = "testtoken";
 
-export const getList = (date_start, date_end, in_out) => {
+export const getList = (date_start, date_end, search, filters) => {
   /* date_start	Начальная дата. Формат YYYY-MM-DD
 date_end	Конечная дата. Формат YYYY-MM-DD
 in_out
@@ -11,10 +11,16 @@ in_out
 1 - входящий звонок
 0 - исходящий звонок
 пусто - все звонки */
+let filtersString = ''
+if (filters.length > 0) {
+  filters.forEach((fil) => {
+    filtersString += `&${fil.key}=${fil.value}`
+  })
+}
   return fetch(
     `${BASE_URL}/getList?date_start=${date_start}&date_end=${date_end}${
-      in_out !== "" ? "&in_out=" + in_out : ""
-    }`,
+      search !== "" ? "&search=" + search : ""
+    }${filtersString}`,
     {
       method: "POST",
       headers: {
@@ -66,7 +72,7 @@ export const getRecord = (record, partnership_id) => {
 
 export const getCallback = (phone) => {
   return fetch(`${BASE_URL}/getCallback?phone=${phone}`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${TOKEN}`,
@@ -91,7 +97,7 @@ export const getCallback = (phone) => {
 
 export const sendAbuse = (mango_id) => {
   return fetch(`${BASE_URL}/sendAbuse?mango_id=${mango_id}`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${TOKEN}`,
@@ -121,7 +127,7 @@ penalty - штраф (если назначаем)
 penalty_comment - комментарий к штрафу, обязателен, если назначаем штраф. */
   const { mango_id, message, penalty, penalty_comment } = answer;
   return fetch(`${BASE_URL}/answerAbuse`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${TOKEN}`,
@@ -179,10 +185,10 @@ supervisor
 worksupport */
   return fetch(
     `${PARTNER_URL}/getPersonsList${
-      position.length > 0 ? "?position[]=" + position : ""
-    }${Number.isFinite(is_blocked) ? "&is_blocked=" + is_blocked : ""}`,
+      position ? "?position[]=" + position : ""
+    }${is_blocked ? "&is_blocked=" + is_blocked : ""}`,
     {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${TOKEN}`,
@@ -213,7 +219,7 @@ button_name	Название кнопки (если есть)
 button_link	Ссылка для кнопки
  */
   return fetch(`${PARTNER_URL}/getProfile`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${TOKEN}`,
@@ -243,7 +249,7 @@ name	название меню
 is_new	признак нового в разделе
 submenu	подменю */
   return fetch(`${PARTNER_URL}/getMenu`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${TOKEN}`,

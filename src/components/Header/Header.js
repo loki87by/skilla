@@ -1,14 +1,16 @@
 import React from "react";
-import { DATE_OPTIONS } from "../../utils/consts";
+import { HEADER_DATE_OPTIONS } from "../../utils/consts";
+import Sprite from "../Sprite/Sprite";
 import search from "../../assets/search.svg";
 import arrow from "../../assets/arrow.svg";
 import "./Header.css";
 
 function Header() {
   const today = new Date();
-  const stringToday = new Intl.DateTimeFormat("ru-RU", DATE_OPTIONS).format(
-    today
-  );
+  const stringToday = new Intl.DateTimeFormat(
+    "ru-RU",
+    HEADER_DATE_OPTIONS
+  ).format(today);
   const analitics = [
     { title: "Новые звонки\u00A0", content: "20 из 30 шт", color: "#28a879" },
     { title: "Качество разговоров\u00A0", content: "40%", color: "#ffd500" },
@@ -34,57 +36,36 @@ function Header() {
         ))}
       </div>
       <div className="Header-block">
-        <svg
+        <Sprite
           src={search}
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
+          class="Header-block-search"
           width="16"
           height="16"
           title="искать"
-          className="Header-block-search"
-        >
-          <use
-            className="sprite"
-            style={{ width: "16px", height: "16px" }}
-            href={`${search}#search`}
-          />
-        </svg>
+          id="search"
+        />
         <div className="Header-block-user">
           <p className="Header-block-user_name">
             ИП Сидорова Александра Михайловна
           </p>
         </div>
-        <svg
+        <Sprite
           src={arrow}
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          width="16"
-          height="16"
-          title="искать"
-          className="Header-block-arrow"
-        >
-          <use
-            className="sprite"
-            style={{ width: "12px", height: "8px" }}
-            href={`${arrow}#arrow`}
-          />
-        </svg>
+          class="Header-block-arrow"
+          width="12"
+          height="8"
+          title="выбрать"
+          id="arrow"
+        />
         <img src="" alt="аватар" className="Header-block-user_avatar" />
-        <svg
+        <Sprite
           src={arrow}
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          width="16"
-          height="16"
-          title="искать"
-          className="Header-block-arrow"
-        >
-          <use
-            className="sprite"
-            style={{ width: "12px", height: "8px" }}
-            href={`${arrow}#arrow`}
-          />
-        </svg>
+          class="Header-block-arrow"
+          width="12"
+          height="8"
+          title="выбрать"
+          id="arrow"
+        />
       </div>
     </header>
   );

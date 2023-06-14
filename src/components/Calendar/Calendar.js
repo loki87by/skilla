@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { WEEK_DAYS } from "../../utils/consts";
+import { MONTHS, WEEK_DAYS } from "../../utils/consts";
+import Sprite from "../Sprite/Sprite";
+import arrow from "../../assets/arrow.svg";
 import "./Calendar.css";
 
 function Calendar(props) {
   const [rows, setRows] = useState(0);
   const [currentYear, setCurrentYear] = useState(2023);
   const [currentMonth, setCurrentMonth] = useState(5);
+  const [currentDay, setCurrentDay] = useState(NaN);
   const [startDate, setStartDate] = useState(null);
   const [matrix, setMatrix] = useState([]);
   const [selectedDates, setSelectedDates] = useState([]);
@@ -69,23 +72,21 @@ function Calendar(props) {
       props.setEndDate(null);
       setSelectedDates([day]);
     } else {
-      if (date >= startDate) {
-        props.setEndDate(date);
-      } else {
-        props.setStartDate(date);
-        props.setEndDate(props.startDate);
-      }
       const sorted = [date, startDate].sort();
+      props.setStartDate(sorted[0]);
+      props.setEndDate(sorted[1]);
       const period = Math.floor((sorted[1] - sorted[0]) / 3600 / 24000 + 1);
       props.setPeriod(period);
       setStartDate(null);
       props.setCalendarOpen(false);
-      props.setSelectedItem("Даты")
+      props.setSelectedItem("Даты");
+      props.resetDates();
       setSelectedDates([]);
     }
   }
 
   function checkGlobalDate(arg) {
+    checkMonth();
     if (arg === "up") {
       const date = new Date(currentYear, currentMonth, getLastDayOfMonth());
 
@@ -128,15 +129,28 @@ function Calendar(props) {
     }
   }
 
+  const checkMonth = useCallback(() => {
+    if (startDate === null) {
+      return;
+    }
+    if (currentMonth > startDate.getMonth()) {
+      setCurrentDay(1);
+    } else if (currentMonth < startDate.getMonth()) {
+      setCurrentDay(getLastDayOfMonth());
+    } else {
+      setCurrentDay(startDate.getDate());
+    }
+  }, [currentMonth, getLastDayOfMonth, startDate]);
+
   function checkSelection(day) {
     if (!startDate) {
       return;
     } else {
-      setSelectedDates([startDate.getDate()]);
-      const sorted = [startDate.getDate(), day].sort((a, b) => {
+      checkMonth();
+      const sorted = [currentDay, day].sort((a, b) => {
         return a - b;
       });
-      const arr = [startDate.getDate()];
+      const arr = [];
       for (let i = sorted[0]; i <= sorted[1]; i++) {
         if (!arr.includes(i)) {
           const date = new Date(currentYear, currentMonth, i);
@@ -156,21 +170,35 @@ function Calendar(props) {
     >
       <div className="Calendar-header">
         <button
-          className="Calendar-header-prevMonth"
+          className="Calendar-header-button"
           onClick={() => {
             checkGlobalDate("down");
           }}
         >
-          назад
+        <Sprite
+          src={arrow}
+          class="Calls_info-calendar_arrow-left"
+          width="12"
+          height="8"
+          title="следующий месяц"
+          id="arrow"
+        />
         </button>
-        <p>{`${currentMonth + 1}, ${currentYear}`}</p>
+        <p>{`${MONTHS[currentMonth]}, ${currentYear}`}</p>
         <button
-          className="Calendar-header-nextMonth"
+          className="Calendar-header-button"
           onClick={() => {
             checkGlobalDate("up");
           }}
         >
-          вперед
+          <Sprite
+            src={arrow}
+            class="Calls_info-calendar_arrow-right"
+            width="12"
+            height="8"
+            title="следующий месяц"
+            id="arrow"
+          />
         </button>
       </div>
       <table>

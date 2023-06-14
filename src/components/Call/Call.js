@@ -24,10 +24,10 @@ function Call(props) {
   return (
     <li
       onMouseOut={() => {
-        setFocus(true);
+        setFocus(false);
       }}
       onMouseOver={() => {
-        setFocus(false);
+        setFocus(true);
       }}
     >
       <div className="Calls_content-item" onClick={click}>
@@ -69,7 +69,7 @@ function Call(props) {
           <p>{props.data.partner_data.phone}</p>
         </div>
         <p className="Calls_content-item__src">{props.data.source}</p>
-        <p className="Calls_content-item__rating">Оценка</p>
+        <p className="Calls_content-item__rating">{props.data.errors[0] || ''}</p>
         {focus ? <Player sound={record} /> :
         <p className="Calls_content-item__record">{props.data.time}</p>}
       </div>
