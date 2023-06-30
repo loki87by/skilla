@@ -7,131 +7,11 @@
   background-color: #e5e5e5;
 }
 
-.Calls_info,
 .Calls_filters {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
-
-.Calls_info-balance {
-  width: 145px;
-  height: 40px;
-  padding: 8px 12px;
-  margin-right: 48px;
-  border-radius: 48px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--bg-color);
-  cursor: pointer;
-}
-
-.Calls_info-balance-text {
-  color: #899cb1;
-}
-
-.Calls_info-balance-text > span {
-  color: #122945;
-}
-
-.Calls_info-balance-text > span:hover {
-  color: #0024cb;
-}
-
-.Calls_info-balance-button {
-  width: 24px;
-  height: 24px;
-}
-
-.Calls_info-calendar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.Calls_info-calendar_arrow-left {
-  transform: rotate(270deg);
-}
-
-.Calls_info-calendar_icon {
-  margin-right: 8px;
-  margin-left: 22px;
-}
-
-.Calls_info-calendar_text {
-  margin-right: 22px;
-  color: #005ff8;
-}
-
-.Calls_info-calendar_arrow-right {
-  transform: rotate(90deg);
-}
-
-.Calls_info-calendar_select {
-  position: absolute;
-  top: calc(100% + 11px);
-  z-index: -1;
-  width: 204px;
-  height: 0;
-  border: 1px solid #eaf0fa;
-  border-radius: 4px;
-  box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-color);
-}
-
-.Calls_info-calendar_select_opened {
-  z-index: 1;
-  height: 239px;
-}
-
-.Calls_info-calendar_select-item {
-  width: 100%;
-  height: 0;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #899cb1;
-}
-
-.Calls_info-calendar_select_opened > .Calls_info-calendar_select-item {
-  height: 40px;
-  padding: 6px 20px;
-}
-
-.Calls_info-calendar_select-item:hover {
-  color: #122945;
-  background-color: #0024cb21;
-}
-
-.Calls_info-calendar_select-item:last-of-type {
-  position: relative;
-  height: 78px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  color: var(--secondary-color);
-}
-
-.Calls_info-calendar_select-item_current {
-  color: var(--secondary-color);
-}
-
-.Calls_info-calendar_select-item > p {
-  font-size: 14px;
-  line-height: 2;
-}
-
-.Calls_info-calendar_select-item_icon {
-  position: absolute;
-  bottom: 26px;
-  right: 21px;
 }
 
 .Calls_filters {
@@ -158,7 +38,7 @@
 
 .Calls_filters-search_input:focus {
   outline: none !important;
-  border: 1px solid var(--secondary-color)
+  border: 1px solid var(--secondary-color);
 }
 
 .Calls_filters-search_icon {
@@ -188,6 +68,7 @@
 
 .Calls_content {
   width: 100%;
+  padding-left: 0;
   margin-block-start: 40px;
   display: flex;
   flex-direction: column;
@@ -198,17 +79,29 @@
 li {
   width: 100%;
   list-style: none;
-  /* padding-left: 12px; */
 }
 
 .Calls_content-item {
   width: 100%;
+  padding: 25px 0 20px;
+  margin-left: 12px;
   display: flex;
   align-items: center;
+  color: #899cb1;
+}
+
+.Calls_content-item > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .Calls_content-item__check {
   width: 16px;
+  min-width: 16px;
   height: 16px;
   margin-right: 12px;
 }
@@ -225,30 +118,27 @@ li {
 
 .Calls_content-item__worker {
   width: 68px;
-  margin-right: 10px;
+  margin-right: 60px;
   display: flex;
   justify-content: flex-start;
 }
 
 .Calls_content-item__call {
-  width: 296px;
-  margin-right: 80px;
-  display: flex;
-  justify-content: flex-end;
+  width: 45px;
+  margin-right: 281px;
 }
 
 .Calls_content-item__src {
-  width: 200px;
-  margin-right: 14px;
+  width: 60px;
+  margin-right: 154px;
 }
 
 .Calls_content-item__rating {
-  width: 146px;
-  margin-right: 52px;
+  width: 47px;
+  margin-right: 414px;
 }
 
 .Calls_content-item__record {
-  width: 152px;
-  display: flex;
-  justify-content: flex-end;
+  width: 89px;
+  margin-right: 40px;
 }

@@ -3,14 +3,6 @@ const PARTNER_URL = "https://api.skilla.ru/partnership";
 const TOKEN = "testtoken";
 
 export const getList = (date_start, date_end, search, filters) => {
-  /* date_start	Начальная дата. Формат YYYY-MM-DD
-date_end	Конечная дата. Формат YYYY-MM-DD
-in_out
-Признак входящего или исходящего звонка.
-Допустимые значения:
-1 - входящий звонок
-0 - исходящий звонок
-пусто - все звонки */
 let filtersString = ''
 if (filters.length > 0) {
   filters.forEach((fil) => {
@@ -48,7 +40,9 @@ export const getRecord = (record, partnership_id) => {
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        'Content-type': 'audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3',
+      'Content-Transfer-Encoding': 'binary',
+      'Content-Disposition': 'attachment; filename="record.mp3"',
         Authorization: `Bearer ${TOKEN}`,
       },
     }
@@ -56,9 +50,7 @@ export const getRecord = (record, partnership_id) => {
     .then((res) => {
       try {
         if (res.ok) {
-          console.log(res);
-          console.log(res.json());
-          return res.json();
+          return res.blob();
         }
       } catch (err) {
         console.log(err);
@@ -81,8 +73,6 @@ export const getCallback = (phone) => {
     .then((res) => {
       try {
         if (res.ok) {
-          console.log(res);
-          console.log(res.json());
           return res.json();
         }
       } catch (err) {
@@ -107,7 +97,6 @@ export const sendAbuse = (mango_id) => {
       try {
         if (res.ok) {
           console.log(res);
-          console.log(res.json());
           return res.json();
         }
       } catch (err) {
@@ -138,7 +127,6 @@ penalty_comment - комментарий к штрафу, обязателен, 
       try {
         if (res.ok) {
           console.log(res);
-          console.log(res.json());
           return res.json();
         }
       } catch (err) {
@@ -199,7 +187,6 @@ worksupport */
       try {
         if (res.ok) {
           console.log(res);
-          console.log(res.json());
           return res.json();
         }
       } catch (err) {
@@ -213,11 +200,6 @@ worksupport */
 };
 
 export const getProfile = () => {
-  /* header_notice	Уведомление в шапку(если есть)
-title	Заголовок уведомления
-button_name	Название кнопки (если есть)
-button_link	Ссылка для кнопки
- */
   return fetch(`${PARTNER_URL}/getProfile`, {
     method: "POST",
     headers: {
@@ -229,7 +211,6 @@ button_link	Ссылка для кнопки
       try {
         if (res.ok) {
           console.log(res);
-          console.log(res.json());
           return res.json();
         }
       } catch (err) {
@@ -243,11 +224,6 @@ button_link	Ссылка для кнопки
 };
 
 export const getMenu = () => {
-  /* url	url
-icon	иконка меню
-name	название меню
-is_new	признак нового в разделе
-submenu	подменю */
   return fetch(`${PARTNER_URL}/getMenu`, {
     method: "POST",
     headers: {
@@ -258,8 +234,6 @@ submenu	подменю */
     .then((res) => {
       try {
         if (res.ok) {
-          console.log(res);
-          console.log(res.json());
           return res.json();
         }
       } catch (err) {

@@ -1,4 +1,8 @@
 html {
+  width: 1920px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   --primary-color: #adbfdf;
   --secondary-color: #002cfb;
   --third-color: #0024cb;

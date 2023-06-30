@@ -1,17 +1,47 @@
 .Player {
+  position: relative;
   width: 352px;
   height: 48px;
-  padding: 0 20px;
+  margin-right: 57px;
+  margin-left: 19px;
   border-radius: 48px;
+  display: flex;
+  align-items: center;
+  background-color: #eaf0fa;
 }
 
 .Player_duration {
+  min-width: 36px;
   margin-right: 12px;
-  font-family: 'SF Pro Display';
-font-style: normal;
+  margin-left: 20px;
 font-weight: 400;
 font-size: 15px;
 line-height: 145%;
-text-align: right;
 color: #122945;
+}
+
+.Player_button {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.Player_process {
+  width: 164px;
+  height: 4px;
+  margin-right: 18px;
+  border-radius: 50px;
+background-color: var(--primary-color);
+cursor: pointer;
+}
+
+.Player_process-output {
+  position: absolute;
+  top: 3px;
+  width: max-content;
+  color: #122945;
+}
+
+.Player_download {
+  margin-right: 22px;
 }

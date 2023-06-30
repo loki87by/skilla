@@ -1,111 +1,27 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import { DATE_OPTIONS, debounce } from "../../utils/consts";
+import React, { useState, useEffect, useRef } from "react";
+import { debounce } from "../../utils/consts";
+import Info from "../Info/Info";
 import Call from "../Call/Call";
-import Calendar from "../Calendar/Calendar";
 import Filters from "../Filters/Filters";
+import Rate from "../Rate/Rate.js";
 import Sprite from "../Sprite/Sprite";
-import calendar from "../../assets/calendar.svg";
-import arrow from "../../assets/arrow.svg";
 import cross from "../../assets/cross.svg";
-import balance from "../../assets/balance.svg";
 import search from "../../assets/search.svg";
 import "./Calls.css";
 
 function Calls(props) {
   const [clicked, setClicked] = useState(false);
-  const [dateSelectIsOpen, setDateSelectOpen] = useState(false);
-  const [calendarIsOpen, setCalendarOpen] = useState(false);
   const [searchIsOpen, setSearchOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("3 дня");
+  const [isRatesOpened, setRatesOpened] = useState(false);
   const [searchValue, setSearchValue] = useState("+7");
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const searchRef = useRef(null);/*
-  const filters = [
+  const [checkedSounds, setCheckedSounds] = useState([]);
+  const [ratesData, setRatesData] = useState([]);
+  const [changedIds, setChangedIds] = useState([]);
+  const [recognizedData, setRecognizedData] = useState([]);
 
-    {text: 'Все звонки', key: 'from_type[]', values: [
-      {ru: 'Клиенты', en: 'clients'},
-      {ru: 'Новые клиенты', en: 'new_clients', styles: 'after'},
-      {ru: 'Рабочие', en: 'workers'},
-      {ru: 'Приложение', en: 'app'},]},
-    {text: 'Все источники', key: 'sources[]', values: [
-      {ru: 'С сайта', en: 'from_site'},
-      {ru: 'Yandex номер', en: 'yandex'},
-      {ru: 'Google номер', en: 'google'},
-      {ru: 'Без источника', en: 'empty'},]},
-    {text: 'Все оценки', key: 'errors[]', values: [
-      {ru: 'Без ошибок', en: 'noerrors'},
-      {ru: 'Скрипт не использован', en: 'noscript'}]},
-    {text: '', key: '', values: []}
-  ] */
+  const [withAudioArray, setWithAudioArray] = useState([]);
 
-  function showCalendar() {
-    setDateSelectOpen(false);
-    setCalendarOpen(true);
-  }
-  const calendarItems = useMemo(
-    () => ["3 дня", "Неделя", "Месяц", "Год", "Указать даты"],
-    []
-  );
-
-  function showDateSelect() {
-    setDateSelectOpen(true);
-  }
-
-  function resetDates() {
-    setStartDate(null);
-    setEndDate(null);
-  }
-
-  useEffect(() => {
-    const index = calendarItems.findIndex((i) => i === selectedItem);
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const day = today.getDate();
-    if (index === 0) {
-      const date = new Date(year, month, day - 2);
-      setStartDate(date);
-    }
-    if (index === 1) {
-      const date = new Date(year, month, day - 6);
-      setStartDate(date);
-    }
-    if (index === 2) {
-      const date = new Date(year, month - 1, day + 1);
-      setStartDate(date);
-    }
-    if (index === 3) {
-      const date = new Date(year - 1, month, day + 1);
-      setStartDate(date);
-    }
-    setEndDate(today);
-    if (index === 4) {
-      setStartDate(null);
-      setEndDate(null);
-    }
-  }, [calendarItems, selectedItem]);
-
-  useEffect(() => {
-    if (startDate && endDate) {
-      if (props.startDate !== startDate || props.endDate !== endDate) {
-        props.setStartDate(startDate);
-        props.setEndDate(endDate);
-      }
-    }
-  });
-
-  const showCurrentDates = () => {
-    const stringStart = new Intl.DateTimeFormat("ru-RU", DATE_OPTIONS)
-      .format(props.startDate)
-      .split(",")[1]
-      .slice(0, 9);
-    const stringEnd = new Intl.DateTimeFormat("ru-RU", DATE_OPTIONS)
-      .format(props.endDate)
-      .split(",")[1]
-      .slice(0, 9);
-    return `${stringStart}-${stringEnd}`;
-  };
+  const searchRef = useRef(null);
 
   function getSearchValue(e) {
     const val = e ? e.replace(/\D/gi, "").slice(1).split("") : "";
@@ -150,12 +66,10 @@ function Calls(props) {
   }
 
   function openSearch() {
-    console.log(1);
     setSearchOpen(true);
   }
 
   function closeSearch() {
-    console.log(0);
     setSearchOpen(false);
   }
 
@@ -171,122 +85,47 @@ function Calls(props) {
     }
   });
 
+  useEffect(() => {
+    if (props.apiData) {
+      const arr = props.apiData.filter((i) => {
+        if (i.record !== "" && i.partnership_id !== "") {
+          return i;
+        } else {
+          return null;
+        }
+      });
+      setWithAudioArray(arr);
+    }
+  }, [props.apiData]);
+
+  /*   function recognize(data) {
+    setRatesData([data])
+    setRatesOpened(true)
+  } */
+
   return (
     <section className="Calls">
-      <article className="Calls_info">
-        <div className="Calls_info-balance">
-          <p className="Calls_info-balance-text">
-            Баланс: <span>272 ₽</span>
-          </p>
-          <img
-            src={balance}
-            alt="пополнить"
-            title="пополнить"
-            className="Calls_info-balance-button"
-          />
-        </div>
-        <div className="Calls_info-calendar">
-              <Sprite
-                src={arrow}
-                click={showDateSelect}
-                class="Calls_info-calendar_arrow-left"
-                width="12"
-                height="8"
-                title="выбрать период"
-                id="arrow"
-              />
-              <Sprite
-                src={calendar}
-                click={showDateSelect}
-                class="Calls_info-calendar_icon"
-                width="16"
-                height="18"
-                title="выбрать период"
-                id="calendar"
-              />
-          <p onClick={showDateSelect} className="Calls_info-calendar_text">
-            {selectedItem}
-          </p>
-              <Sprite
-                src={arrow}
-                click={showDateSelect}
-                class="Calls_info-calendar_arrow-right"
-                width="12"
-                height="8"
-                title="выбрать период"
-                id="arrow"
-              />
-          <div
-            className={`Calls_info-calendar_select ${
-              dateSelectIsOpen && "Calls_info-calendar_select_opened"
-            }`}
-          >
-            {calendarItems.map((item, index) => (
-              <div
-                key={index}
-                className={`Calls_info-calendar_select-item ${
-                  item.toLowerCase().includes(selectedItem.toLowerCase()) &&
-                  "Calls_info-calendar_select-item_current"
-                }`}
-                onClick={
-                  index !== 4
-                    ? () => {
-                        props.setPeriod(NaN);
-                        setSelectedItem(item);
-                        setDateSelectOpen(false);
-                      }
-                    : showCalendar
-                }
-              >
-                <p>{item}</p>
-                {index === 4 ? (
-                  <>
-                    <p>
-                      {props.startDate && props.endDate && !isNaN(props.period)
-                        ? showCurrentDates()
-                        : "__.__.__-__.__.__"}
-                    </p>
-              <Sprite
-                src={calendar}
-                class="Calls_info-calendar_select-item_icon"
-                width="16"
-                height="18"
-                title="выбрать период"
-                id="calendar"
-              />
-                  </>
-                ) : (
-                  ""
-                )}
-              </div>
-            ))}
-          </div>
-          <Calendar
-            calendarIsOpen={calendarIsOpen}
-            startDate={props.startDate}
-            endDate={props.endDate}
-            setStartDate={props.setStartDate}
-            setEndDate={props.setEndDate}
-            setPeriod={props.setPeriod}
-            resetDates={resetDates}
-            setCalendarOpen={setCalendarOpen}
-            setSelectedItem={setSelectedItem}
-          />
-        </div>
-      </article>
+      <Info
+        startDate={props.startDate}
+        period={props.period}
+        endDate={props.endDate}
+        setEndDate={props.setEndDate}
+        setPeriod={props.setPeriod}
+        setStartDate={props.setStartDate}
+      />
       <article className="Calls_filters">
         <div className="Calls_filters-search">
-              <Sprite
-                src={search}
-                click={openSearch}
-                class={`Calls_filters-search_icon ${
-                  searchIsOpen && "Calls_filters-search_icon-opened"
-                }`}
-                width="16"
-                height="16"
-                title="искать"
-                id="search"
-              />
+          <Sprite
+            src={search}
+            click={openSearch}
+            class={`Calls_filters-search_icon ${
+              searchIsOpen && "Calls_filters-search_icon-opened"
+            }`}
+            width="16"
+            height="16"
+            title="искать"
+            id="search"
+          />
           {searchIsOpen ? (
             <>
               <input
@@ -320,14 +159,33 @@ function Calls(props) {
           )}
         </div>
         <div className="Calls_filters-params">
-<Filters filters={props.filters} setFilters={props.setFilters}/>
+          <Filters
+            filters={props.filters}
+            apiData={props.apiData}
+            setFilters={props.setFilters}
+            setInnerFilters={props.setInnerFilters}
+            setOuterFilters={props.setOuterFilters}
+          />
         </div>
       </article>
+      {isRatesOpened ? (
+        <Rate
+          data={props.apiData}
+          changedIds={changedIds}
+          array={ratesData}
+           recognizedData={recognizedData}
+           setRecognizedData={setRecognizedData}
+          setChangedIds={setChangedIds}
+          setRatesOpened={setRatesOpened}
+        />
+      ) : (
+        ""
+      )}
       <ul className="Calls_content">
         <li>
           <div className="Calls_content-item">
             <div className="Calls_content-item__check">
-              {clicked ? <input type="checkbox" disabled={true} /> : ""}
+              {clicked ? <input type="checkbox" disabled={true} /> : <p></p>}
             </div>
             <p className="Calls_content-item__type">Тип</p>
             <p className="Calls_content-item__time">Время</p>
@@ -340,7 +198,16 @@ function Calls(props) {
         </li>
         {props.apiData !== null
           ? props.apiData.map((i) => (
-              <Call key={i.id} data={i} setClicked={setClicked} />
+              <Call
+                key={i.id}
+                data={i}
+                checkedSounds={checkedSounds}
+                withAudioArray={withAudioArray}
+                setCheckedSounds={setCheckedSounds}
+                setClicked={setClicked}
+                setRatesOpened={setRatesOpened}
+                setRatesData={setRatesData}
+              />
             ))
           : ""}
       </ul>

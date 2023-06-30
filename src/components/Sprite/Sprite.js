@@ -12,10 +12,12 @@ function Sprite(props) {
       width={props.width}
       height={props.height}
       title={props.title}
-      className={`Sprite ${props.class}`}
+      style={props.style}
+      className={`${props.class} Sprite`}
     >
       <use
-        style={{ width: `${props.width}px`, height: `${props.height}px` }}
+      className={`${props.class}`}
+        style={{width: `${props.width}px`, height: `${props.height}px`}}
         href={`${props.src}#${props.id}`}
       />
     </svg>
