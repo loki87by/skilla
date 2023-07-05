@@ -1,0 +1,195 @@
+.RateItem {
+  width: 1337px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.RateItem:first-of-type {
+  height: 58px;
+  margin-bottom: 2px;
+  align-items: flex-start;
+}
+
+.RateItem_text {
+  position: relative;
+  width: max-content;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17.36px;
+  text-align: left;
+  color: #122945;
+}/*
+
+.RateItem:first-of-type > .RateItem_text:hover::after {
+  content:url('../../assets/triangle_down.svg');
+  position: absolute;
+  top: 0;
+  left: attr(data-width);
+  width: 10px;
+  height: 10px;
+}
+ */
+
+.RateItem_text_manager {
+  max-width: 200px;
+  min-width: 200px;
+  margin-right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.RateItem_avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 20px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.RateItem_avatar:hover {
+  border: 2px solid #28a879;
+}
+
+.RateItem_text_total {
+  padding-left: 52px;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21px;
+}
+
+.RateItem_text_manager-data {
+  max-width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.RateItem_text_calls {
+  min-width: 203px;
+  max-width: 203px;
+  margin-right: 8px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.RateItem_text_statistic {
+  min-width: 47px;
+  max-width: 47px;
+}
+
+.RateItem_text_statistic > p {
+  margin-bottom: 8px;
+  text-align: right;
+  line-height: 1;
+}
+
+.RateItem_text_statistic > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.RateItem_text_call {
+  display: flex;
+  align-items: center;
+}
+
+.RateItem_text_clarification {
+  margin-left: 4px;
+  align-self: flex-start;
+}
+
+.RateItem_text_red,
+.RateItem_text_green {
+  margin-left: 2px;
+  color: #00a775;
+  line-height: 1;
+}
+
+.RateItem_text_red {
+  color: #ea1a4f;
+}
+
+.RateItem_text_lines {
+  min-width: 148px;
+  max-width: 148px;
+  height: 8px;
+}
+
+.RateItem_text_lines:first-child {
+  margin-top: 7px;
+  margin-bottom: 8px;
+  border-radius: 0px 12px 12px 0px;
+  background-color: #d8e4fb;
+}
+
+.RateItem_text_line {
+  min-width: 124px;
+  max-width: 124px;
+  border-radius: 0px 12px 12px 0px;
+  background-color: #d8e4fb;
+}
+
+.RateItem_text_converse {
+  min-width: 68px;
+  max-width: 68px;
+  margin-right: 59px;
+  text-align: right;
+}
+
+.RateItem_text_cell {
+  min-width: 95px;
+  max-width: 95px;
+  margin-right: 15px;
+}
+
+.RateItem_text_header {
+  position: relative;
+  width: max-content;
+  white-space: break-spaces;
+}
+
+.RateItem_text_header > span {
+  position: absolute;
+    top: 8px;
+    right: -10px;
+    height: 5px;
+    display: flex;
+}
+
+.RateItem_rate {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.RateItem_contextMenu {
+  position: absolute;
+  top: 23px;
+  left: -4px;
+  z-index: 2;
+  padding: 3px;
+  border-radius: 4px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--bg-color);
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.RateItem_contextMenu > div {
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.RateItem_contextMenu > div:last-of-type {
+  margin-bottom: 0;
+}

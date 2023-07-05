@@ -9,6 +9,7 @@ import "./App.css";
 
 function App() {
   const [apiData, setApiData] = useState(null);
+  const [persons, setPersons] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [search, setSearch] = useState("");
@@ -107,7 +108,7 @@ function App() {
   useEffect(() => {
     getPersonsList()
       .then((res) => {
-        console.log(res);
+        setPersons(res);
       })
       .catch((err) => {
         console.log(err);
@@ -138,7 +139,7 @@ function App() {
     <>
       <Menu />
       <main>
-        <Header />
+        <Header persons={persons}/>
         <Calls
           startDate={startDate}
           endDate={endDate}

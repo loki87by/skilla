@@ -19,53 +19,6 @@
   justify-content: space-between;
 }
 
-.Calls_filters-search {
-  position: relative;
-  margin: 10px 0;
-  display: flex;
-}
-
-.Calls_filters-search_input {
-  width: 482px;
-  height: 40px;
-  padding: 10px 46px;
-  margin: -10px 0;
-  box-sizing: border-box;
-  background: var(--bg-color);
-  border: 1px solid #eaf0fa;
-  border-radius: 48px;
-}
-
-.Calls_filters-search_input:focus {
-  outline: none !important;
-  border: 1px solid var(--secondary-color);
-}
-
-.Calls_filters-search_icon {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.Calls_filters-search_icon-opened {
-  top: 2px;
-  left: 18px;
-}
-
-.Calls_filters-search_text {
-  margin-left: 28px;
-  font-size: 14px;
-  line-height: 140%;
-  color: #5e7793;
-}
-
-.Calls_filters-search_close {
-  position: absolute;
-  top: 3px;
-  right: 17px;
-  z-index: 1;
-}
-
 .Calls_content {
   width: 100%;
   padding-left: 0;

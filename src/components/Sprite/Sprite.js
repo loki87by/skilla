@@ -11,10 +11,10 @@ function Sprite(props) {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       width={props.width}
       height={props.height}
-      title={props.title}
       style={props.style}
       className={`${props.class} Sprite`}
     >
+    <title>{props.title}</title>
       <use
       className={`${props.class}`}
         style={{width: `${props.width}px`, height: `${props.height}px`}}

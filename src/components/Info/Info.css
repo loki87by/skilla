@@ -6,6 +6,7 @@
 }
 
 .Info__balance {
+  position: relative;
   width: 145px;
   height: 40px;
   padding: 8px 12px;
@@ -27,13 +28,96 @@
   color: #122945;
 }
 
-.Info__balance-text > span:hover {
+.Info__balance:hover .Info__balance-text > span {
   color: #0024cb;
 }
 
 .Info__balance-button {
   width: 24px;
   height: 24px;
+}
+
+.Info__balance_add-block {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  z-index: 2;
+  width: 124px;
+  height: max-content;
+  padding: 18px;
+  padding-bottom: 0;
+  border-radius: 5px;
+  background-color: var(--bg-color);
+}
+
+.Info__balance_add-block_close {
+  position: absolute;
+  z-index: 3;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.Info__balance_add-block_data {
+  position: relative;
+  width: max-content;
+  height: 71px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Info__balance_add-block_input {
+  width: 124px;
+  height: 48px;
+  padding: 13px 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: 0 !important;
+  outline-color: transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  box-shadow: 0 0 0 0 rgba(0,123,255,0) !important;
+}
+
+.Info__balance_add-block_input::-webkit-outer-spin-button,
+.Info__balance_add-block_input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.Info__balance_add-block_input,
+.Info__balance_add-block_label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20.8px;
+  color: #121212;
+}
+
+.Info__balance_add-block_label {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  border: none;
+}
+
+.Info__balance_add-block_input:hover {
+  border-color: var(--secondary-color);
+}
+
+.Info__balance_add-block_input:focus {
+  border-color: var(--third-color);
+}
+
+.Info__balance_add-block_alert {
+  font-size: 14px;
+  line-height: 20.72px;
+}
+
+.Info__balance_add-block_error,
+.Info__balance_add-block_alert {
+  border-color: #ea1a4f !important;
+  color: #ea1a4f;
 }
 
 .Info__calendar {

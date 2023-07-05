@@ -5,11 +5,15 @@ import Sprite from "../Sprite/Sprite";
 import calendar from "../../assets/calendar.svg";
 import arrow from "../../assets/arrow.svg";
 import balance from "../../assets/balance.svg";
+import cross from "../../assets/cross.svg";
 import "./Info.css";
 
 function Info(props) {
   const [dateSelectIsOpen, setDateSelectOpen] = useState(false);
   const [calendarIsOpen, setCalendarOpen] = useState(false);
+  const [cashInputIsOpen, setCashInputOpen] = useState(false);
+  const [cashError, setCashError] = useState(false);
+  const [cashValue, setCashValue] = useState(3850);
   const [selectedItem, setSelectedItem] = useState("3 дня");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -82,6 +86,23 @@ function Info(props) {
     }
   }, [calendarItems, selectedItem]);
 
+  function showCashInput() {
+    setCashInputOpen(true);
+  }
+
+  function closeCashInput() {
+    setCashInputOpen(false);
+  }
+
+  function changeCashValue(val) {
+    setCashValue(val);
+    if (val === "") {
+      setCashError(true);
+    } else {
+      setCashError(false);
+    }
+  }
+
   return (
     <article className="Info">
       <div className="Info__balance">
@@ -90,10 +111,50 @@ function Info(props) {
         </p>
         <img
           src={balance}
+          onClick={showCashInput}
           alt="пополнить"
           title="пополнить"
           className="Info__balance-button"
         />
+        {cashInputIsOpen ? (
+          <div className="Info__balance_add-block">
+            <Sprite
+              src={cross}
+              click={closeCashInput}
+              class="Info__balance_add-block_close"
+              width="14"
+              height="14"
+              title="закрыть"
+              id="cross"
+            />
+            <div className="Info__balance_add-block_data">
+              <input
+                className={`Info__balance_add-block_input ${
+                  cashError && "Info__balance_add-block_error"
+                }`}
+                id="balance-input"
+                type="number"
+                value={cashValue}
+                onChange={(e) => {
+                  changeCashValue(e.target.value);
+                }}
+              />
+              <label
+                className={`Info__balance_add-block_label ${
+                  cashError && "Info__balance_add-block_error"
+                }`}
+                htmlFor="balance-input"
+              >
+                ₽
+              </label>
+              {cashError ? <span className="Info__balance_add-block_alert">
+                "Введите сумму"
+              </span> : ""}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="Info__calendar">
         <Sprite

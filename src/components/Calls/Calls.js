@@ -1,27 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { debounce } from "../../utils/consts";
 import Info from "../Info/Info";
+import Search from "../Search/Search.js";
 import Call from "../Call/Call";
 import Filters from "../Filters/Filters";
 import Rate from "../Rate/Rate.js";
-import Sprite from "../Sprite/Sprite";
-import cross from "../../assets/cross.svg";
-import search from "../../assets/search.svg";
 import "./Calls.css";
 
 function Calls(props) {
   const [clicked, setClicked] = useState(false);
-  const [searchIsOpen, setSearchOpen] = useState(false);
   const [isRatesOpened, setRatesOpened] = useState(false);
   const [searchValue, setSearchValue] = useState("+7");
   const [checkedSounds, setCheckedSounds] = useState([]);
   const [ratesData, setRatesData] = useState([]);
   const [changedIds, setChangedIds] = useState([]);
   const [recognizedData, setRecognizedData] = useState([]);
-
   const [withAudioArray, setWithAudioArray] = useState([]);
-
-  const searchRef = useRef(null);
 
   function getSearchValue(e) {
     const val = e ? e.replace(/\D/gi, "").slice(1).split("") : "";
@@ -53,31 +47,19 @@ function Calls(props) {
     }
   }
 
-  function checkSearchValue() {
-    if (searchValue.length < 9) {
-      const nums = searchValue.replace(/\D/gi, "");
-      const cutted = nums.slice(1, nums.length - 1);
-      if (nums.length > 2) {
-        setSearchValue(`+7 (${cutted})`);
-      } else {
-        setSearchValue("+7");
+  function checkSearchValue(e) {
+    if (e.key === "Backspace") {
+      if (searchValue.length < 9) {
+        const nums = searchValue.replace(/\D/gi, "");
+        const cutted = nums.slice(1, nums.length - 1);
+        if (nums.length > 2) {
+          setSearchValue(`+7 (${cutted})`);
+        } else {
+          setSearchValue("+7");
+        }
       }
     }
   }
-
-  function openSearch() {
-    setSearchOpen(true);
-  }
-
-  function closeSearch() {
-    setSearchOpen(false);
-  }
-
-  useEffect(() => {
-    if (searchIsOpen) {
-      searchRef.current.focus();
-    }
-  });
 
   useEffect(() => {
     if (searchValue.length > 2) {
@@ -98,11 +80,6 @@ function Calls(props) {
     }
   }, [props.apiData]);
 
-  /*   function recognize(data) {
-    setRatesData([data])
-    setRatesOpened(true)
-  } */
-
   return (
     <section className="Calls">
       <Info
@@ -114,50 +91,13 @@ function Calls(props) {
         setStartDate={props.setStartDate}
       />
       <article className="Calls_filters">
-        <div className="Calls_filters-search">
-          <Sprite
-            src={search}
-            click={openSearch}
-            class={`Calls_filters-search_icon ${
-              searchIsOpen && "Calls_filters-search_icon-opened"
-            }`}
-            width="16"
-            height="16"
-            title="искать"
-            id="search"
-          />
-          {searchIsOpen ? (
-            <>
-              <input
-                ref={searchRef}
-                className="Calls_filters-search_input"
-                type="text"
-                value={searchValue}
-                onKeyUp={(e) => {
-                  if (e.key === "Backspace") {
-                    checkSearchValue();
-                  }
-                }}
-                onChange={(e) => {
-                  getSearchValue(e.target.value);
-                }}
-              />
-              <Sprite
-                src={cross}
-                click={closeSearch}
-                class="Calls_info-calendar_arrow-right"
-                width="4"
-                height="14"
-                title="закрыть"
-                id="cross"
-              />
-            </>
-          ) : (
-            <p className="Calls_filters-search_text" onClick={openSearch}>
-              Поиск по звонкам
-            </p>
-          )}
-        </div>
+        <Search
+          searchValue={searchValue}
+          checkSearchValue={checkSearchValue}
+          getSearchValue={getSearchValue}
+          children={<p className="Search__text">Поиск по звонкам</p>
+          }
+        />
         <div className="Calls_filters-params">
           <Filters
             filters={props.filters}
@@ -173,8 +113,8 @@ function Calls(props) {
           data={props.apiData}
           changedIds={changedIds}
           array={ratesData}
-           recognizedData={recognizedData}
-           setRecognizedData={setRecognizedData}
+          recognizedData={recognizedData}
+          setRecognizedData={setRecognizedData}
           setChangedIds={setChangedIds}
           setRatesOpened={setRatesOpened}
         />

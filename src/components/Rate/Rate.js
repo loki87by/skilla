@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getRate, getRateColor } from "../../utils/consts";
+import { HEADER_CELLS } from "../../utils/consts";
+import RateItem from "../RateItem/RateItem";
 import Sprite from "../Sprite/Sprite";
 import arrow from "../../assets/arrow.svg";
 import question from "../../assets/question.svg";
@@ -7,12 +8,31 @@ import "./Rate.css";
 
 function Rate(props) {
   const [data, setData] = useState([]);
-  const [total, setTotal] = useState(null);
   const [newData, setNewData] = useState([]);
   const [averageRate, setAverageRate] = useState([]);
   const [curretntId, setCurretntId] = useState("");
+  const [total, setTotal] = useState(null);
+  const [sorted, setSorted] = useState(null);
   const [isContextMenuOpened, setContextMenuOpened] = useState(false);
   const [isRatesUpdated, setRatesUpdated] = useState(false);
+
+  useEffect(() => {
+    if (isRatesUpdated && sorted !== null) {
+      const array = data.slice();
+      const rateIndex = HEADER_CELLS.findIndex((i) => i.key === sorted.key);
+      if (sorted.dir) {
+        array.sort((a, b) => {
+          return a.rates[rateIndex] - b.rates[rateIndex];
+        });
+      } else {
+        array.sort((a, b) => {
+          return b.rates[rateIndex] - a.rates[rateIndex];
+        });
+      }
+
+      setNewData(array);
+    }
+  }, [data, isRatesUpdated, sorted]);
 
   useEffect(() => {
     if (isRatesUpdated) {
@@ -88,7 +108,7 @@ function Rate(props) {
   );
 
   const findOriginal = useCallback(
-    (param, average) => {
+    (param) => {
       const arr = [];
       let res = 0;
       data.forEach((i) => {
@@ -125,10 +145,7 @@ function Rate(props) {
       const recognized = findOriginal("recognized");
       const script = findOriginal("script");
       const converse = Math.sqrt(
-        Math.pow(
-          Math.round((100 / calls) * (recognized + (script > 0 ? 0 : script))),
-          2
-        )
+        Math.pow(Math.round((100 / calls) * recognized), 2)
       );
       setTotal({
         calls,
@@ -148,12 +165,6 @@ function Rate(props) {
     setAverageRate(getAverage(arr));
   }, [data, getAverage]);
 
-  function setCurrentRate(e, id, index) {
-    e.preventDefault();
-    setCurretntId(`${id}_rate-${index}`);
-    setContextMenuOpened(true);
-  }
-
   function checkRecognized(id) {
     if (props.changedIds.some((i) => i === id)) {
       return data.slice();
@@ -168,15 +179,8 @@ function Rate(props) {
           const item = JSON.parse(JSON.stringify(i));
           item.recognized = i.recognized + 1;
           item.script = i.script + 1;
-          console.log(item.recognized + (item.script > 0 ? 0 : item.script));
           item.converse = Math.sqrt(
-            Math.pow(
-              Math.round(
-                (100 / item.calls) *
-                  (item.recognized + (item.script > 0 ? 0 : item.script))
-              ),
-              2
-            )
+            Math.pow(Math.round((100 / item.calls) * item.recognized), 2)
           );
           return item;
         }
@@ -240,8 +244,7 @@ function Rate(props) {
               className="Rate__content-header_button"
             >
               <Sprite
-                src={arrow} /*
-              style={{ transform: "rotate(180deg)" }} */
+                src={arrow}
                 width="12"
                 height="8"
                 title="сохранить и закрыть"
@@ -250,295 +253,27 @@ function Rate(props) {
             </div>
           </div>
         </article>
-        <div className="Rate__content-item">
-          <p className="Rate__content-item_text Rate__content-item_text_manager">
-            Менеджер
-          </p>
-          <div className="Rate__content-item_text Rate__content-item_text_calls">
-            <p className="Rate__content-item_text_call">
-              Разговоров
-              <span className="Rate__content-item_text Rate__content-item_text_clarification">
-                шт
-              </span>
-            </p>
-            <p className="Rate__content-item_text_call">
-              Распознано / По скрипту
-              <span className="Rate__content-item_text Rate__content-item_text_clarification">
-                %
-              </span>
-            </p>
-          </div>
-          <p className="Rate__content-item_text Rate__content-item_text_converse">
-            Конверсия
-          </p>
-          <p className="Rate__content-item_text Rate__content-item_text_cell">
-            Приветствовал клиента
-          </p>
-          <p className="Rate__content-item_text Rate__content-item_text_cell">
-            Спросил<br></br>имя
-          </p>
-          <p className="Rate__content-item_text Rate__content-item_text_cell">
-            Правильно озвучил цену
-          </p>
-          <p className="Rate__content-item_text Rate__content-item_text_cell">
-            Сказал<br></br>про скидку
-          </p>
-          <p className="Rate__content-item_text Rate__content-item_text_cell">
-            Сохранил предзаказ
-          </p>
-          <p className="Rate__content-item_text Rate__content-item_text_cell">
-            Поблагодарил за звонок
-          </p>
-          <p className="Rate__content-item_text Rate__content-item_text_cell">
-            Без стоп<br></br>слов
-          </p>
-          <p
-            style={{ marginLeft: "-20px" }}
-            className="Rate__content-item_text Rate__content-item_text_cell"
-          >
-            Оценка
-          </p>
-        </div>
+        <RateItem
+          isHeader={true}
+          setSorted={setSorted}
+          setRatesUpdated={setRatesUpdated}
+        />
         {total ? (
-          <div className="Rate__content-item">
-            <p className="Rate__content-item_text Rate__content-item_text_manager Rate__content-item_text_total">
-              Все
-            </p>
-            <div
-              style={{
-                padding: "11px, 0px",
-                boxSizing: "border-box",
-                flexWrap: "nowrap",
-              }}
-              className="Rate__content-item_text Rate__content-item_text_calls"
-            >
-              <div className="Rate__content-item_text Rate__content-item_text_calls Rate__content-item_text_statistic">
-                <p className="Rate__content-item_text_call Rate__content-item_text_statistic">
-                  {total.calls}
-                </p>
-                <p className="Rate__content-item_text_call Rate__content-item_text_statistic">
-                  {`${total.recognized} / `}
-                  <span
-                    className={`Rate__content-item_text ${
-                      total.script < 0
-                        ? "Rate__content-item_text_red"
-                        : "Rate__content-item_text_green"
-                    }`}
-                  >
-                    {total.script > 0 ? total.script : 0}
-                  </span>
-                </p>
-              </div>
-              <div className="Rate__content-item_text Rate__content-item_text_calls Rate__content-item_text_lines">
-                <div className="Rate__content-item_text_call Rate__content-item_text_lines"></div>
-                <div
-                  className="Rate__content-item_text_call Rate__content-item_text_lines Rate__content-item_text_line"
-                  style={{
-                    background: `linear-gradient(
-                to right,
-                ${
-                  total.script - total.recognized < 0 ? "#ea1a4f" : "#00a775"
-                } 0%,
-                ${
-                  total.script - total.recognized < 0 ? "#ea1a4f" : "#00a775"
-                } ${Math.round((100 / total.calls) * total.recognized)}%,
-                #d8e4fb ${Math.round((100 / total.calls) * total.recognized)}%,
-                #d8e4fb 100%
-              )`,
-                  }}
-                ></div>
-              </div>
-            </div>
-            <p
-              style={{
-                color:
-                  Math.round(Math.sqrt(Math.pow(total.converse, 2))) > 75
-                    ? "#00a775"
-                    : Math.round(Math.sqrt(Math.pow(total.converse, 2))) < 40
-                    ? "#ea1a4f"
-                    : "#122945",
-              }}
-              className="Rate__content-item_text Rate__content-item_text_converse"
-            >
-              {`${Math.round(Math.sqrt(Math.pow(total.converse, 2)))}%`}
-            </p>
-            {total.rates
-              ? total.rates.map((item, index) => (
-                  <div
-                    key={`rate-${item}-${index}`}
-                    className="Rate__content-item_text Rate__content-item_text_cell"
-                  >
-                    <div
-                      className="Rate__content-item_text Rate__content-item_rate"
-                      style={{
-                        background: getRateColor(total.rates[index]),
-                      }}
-                    ></div>
-                  </div>
-                ))
-              : ""}
-            <p
-              className="Rate__content-item_text Rate__content-item_text_cell"
-              style={
-                averageRate !== 0
-                  ? { color: getRateColor(averageRate), marginLeft: "-20px" }
-                  : { marginLeft: "-20px" }
-              }
-            >
-              {getRate(averageRate)}
-            </p>
-          </div>
+          <RateItem isTotal={true} data={total} averageRate={averageRate} />
         ) : (
           ""
         )}
         {data.map((i, ind) => (
-          <div key={ind} className="Rate__content-item">
-            <div className="Rate__content-item_text Rate__content-item_text_manager">
-              <img
-                className="Rate__content-item_avatar"
-                alt="аватар"
-                src={i.person_avatar}
-              />
-              <div className="Rate__content-item_text Rate__content-item_text_manager-data">
-                <p className="Rate__content-item_text">{`${i.person_name} ${i.person_surname}`}</p>
-                <p className="Rate__content-item_text">нет данных</p>
-              </div>
-            </div>
-            <div
-              className="Rate__content-item_text Rate__content-item_text_calls"
-              style={{
-                padding: "11px, 0px",
-                boxSizing: "border-box",
-                flexWrap: "nowrap",
-              }}
-            >
-              <div className="Rate__content-item_text Rate__content-item_text_calls Rate__content-item_text_statistic">
-                <p className="Rate__content-item_text_call Rate__content-item_text_statistic">
-                  {i.calls}
-                </p>
-                <p className="Rate__content-item_text_call Rate__content-item_text_statistic">
-                  {`${i.recognized} / `}
-                  <span
-                    className={`Rate__content-item_text ${
-                      i.script < 0
-                        ? "Rate__content-item_text_red"
-                        : "Rate__content-item_text_green"
-                    }`}
-                  >
-                    {i.script > 0 ? i.script : 0}
-                  </span>
-                </p>
-              </div>
-              <div className="Rate__content-item_text Rate__content-item_text_calls Rate__content-item_text_lines">
-                <div className="Rate__content-item_text_call Rate__content-item_text_lines"></div>
-                <div
-                  className="Rate__content-item_text_call Rate__content-item_text_lines Rate__content-item_text_line"
-                  style={{
-                    background: `linear-gradient(
-                to right,
-                ${i.script - i.recognized < 0 ? "#ea1a4f" : "#00a775"} 0%,
-                ${
-                  i.script - i.recognized < 0 ? "#ea1a4f" : "#00a775"
-                } ${Math.round((100 / i.calls) * i.recognized)}%,
-                #d8e4fb ${Math.round((100 / i.calls) * i.recognized)}%,
-                #d8e4fb 100%
-              )`,
-                  }}
-                ></div>
-              </div>
-            </div>
-            <p
-              style={{
-                color:
-                  Math.round(Math.sqrt(Math.pow(i.converse, 2))) > 75
-                    ? "#00a775"
-                    : Math.round(Math.sqrt(Math.pow(i.converse, 2))) < 40
-                    ? "#ea1a4f"
-                    : "#122945",
-              }}
-              className="Rate__content-item_text Rate__content-item_text_converse"
-            >
-              {`${Math.round(Math.sqrt(Math.pow(i.converse, 2)))}%`}
-            </p>
-            {i.rates.map((item, index) => (
-              <div
-                key={`rate-${item}-${index}`}
-                className="Rate__content-item_text Rate__content-item_text_cell"
-              >
-                <div
-                  id={`${i.id}_rate-${index}`}
-                  onContextMenu={(e) => {
-                    setCurrentRate(e, i.id, index);
-                  }}
-                  className="Rate__content-item_text Rate__content-item_rate"
-                  style={{ background: getRateColor(i.rates[index]) }}
-                >
-                  {curretntId === `${i.id}_rate-${index}` &&
-                  isContextMenuOpened ? (
-                    <div className="Rate__content-item_contextMenu">
-                      <div
-                        onClick={() => {
-                          setRate(i.id, index, "bad");
-                        }}
-                      >
-                        <div
-                          className="Rate__content-item_text Rate__content-item_rate"
-                          style={{
-                            background: "#ea1a4f",
-                          }}
-                          title="Плохо"
-                        ></div>
-                        <p>Плохо</p>
-                      </div>
-                      <div
-                        onClick={() => {
-                          setRate(i.id, index, "good");
-                        }}
-                      >
-                        <div
-                          className="Rate__content-item_text Rate__content-item_rate"
-                          style={{
-                            background: "#d8e4fb",
-                          }}
-                          title="Хорошо"
-                        ></div>
-                        <p>Хорошо</p>
-                      </div>
-                      <div
-                        onClick={() => {
-                          setRate(i.id, index, "awesome");
-                        }}
-                      >
-                        <div
-                          className="Rate__content-item_text Rate__content-item_rate"
-                          style={{
-                            background: "#28a879",
-                          }}
-                          title="Отлично"
-                        ></div>
-                        <p>Отлично</p>
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
-            ))}
-            <p
-              className="Rate__content-item_text Rate__content-item_text_cell"
-              style={
-                getAverage(i.rates) !== 0
-                  ? {
-                      color: getRateColor(getAverage(i.rates)),
-                      marginLeft: "-20px",
-                    }
-                  : { marginLeft: "-20px" }
-              }
-            >
-              {getRate(getAverage(i.rates))}
-            </p>
-          </div>
+          <RateItem
+            data={i}
+            key={ind}
+            curretntId={curretntId}
+            isContextMenuOpened={isContextMenuOpened}
+            setCurretntId={setCurretntId}
+            setRate={setRate}
+            getAverage={getAverage}
+            setContextMenuOpened={setContextMenuOpened}
+          />
         ))}
       </div>
     </section>

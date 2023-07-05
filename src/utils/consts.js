@@ -122,6 +122,22 @@ export const ERRORS = [
   { text: "Стоп слова", active: "none" },
 ];
 
+export const HEADER_CELLS = [
+  {text: `Приветствовал \n клиента`, data: '94px', key: 'hello'},
+  {text: `Спросил \n имя`, data: '78px', key: 'name'},
+  {text: `Правильно \n озвучил цену`, data: '83px', key: 'coast'},
+  {text: `Сказал \n про скидку`, data: '63px', key: 'sale'},
+  {text: `Сохранил \n предзаказ`, data: '64px', key: 'save'},
+  {text: `Поблагодарил \n за звонок`, data: '92px', key: 'thanx'},
+  {text: `Без стоп \n слов`, data: '57px', key: 'non-stop'},
+]
+
+export const WORKERS = [
+  {title: 'operator', list: ['Мирон Батонов', 'Алексей Ильин', 'Милана Константинопольская']},
+  {title: 'frmanager', list: ['Александра Сизых', 'Илья Алексеев', 'Владимир Петров']},
+  {title: 'accountant', list: ['Полина Калинина', 'Наталья Натальева', 'Константин Константинопольский']},
+]
+
 export function debounce(f, t, args) {
   let lastCall = Date.now();
   let lastCallTimer = setTimeout(() => f(args), t);

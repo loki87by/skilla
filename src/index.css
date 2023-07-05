@@ -8,13 +8,12 @@ html {
   --third-color: #0024cb;
   --fourth-color: #274bcb;
   --bg-color: #fff;
-
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,9 +21,13 @@ body {
 
 p {
   margin: 0;
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 148%;
+}
+
+ul {
+  margin: 0;
 }
