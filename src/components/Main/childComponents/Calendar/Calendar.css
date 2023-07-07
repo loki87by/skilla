@@ -1,0 +1,48 @@
+.Calendar {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid #000;
+  opacity: 0;
+  visibility: hidden;
+  background-color: var(--bg-color);
+  transition: all 0.5s ease-out;
+}
+
+.Calendar_opened {
+  top: calc(100% + 11px);
+  opacity: 1;
+  visibility: visible;
+}
+
+.Calendar__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Calendar__header-button {
+  width: max-content;
+  height: max-content;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.Calendar__day {
+  padding: 3px;
+  text-align: center;
+}
+
+.Calendar__week,
+.Calendar__day {
+  border: 1px dotted grey;
+}
+
+.Calendar__day_selected {
+  background-color: var(--secondary-color);
+}

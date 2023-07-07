@@ -1,0 +1,121 @@
+.UserBlock {
+  position: relative;
+  min-width: 340px;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.UserBlock__persons-list {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  z-index: 2;
+  padding: 2px 22px;
+  border: 1px solid var(--primary-color);
+  border-top: 1px dotted var(--primary-color);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: var(--bg-color);
+}
+
+.UserBlock__name {
+  text-align: right;
+}
+
+.UserBlock__arrow {
+  margin-left: 8px;
+}
+
+.UserBlock__avatar {
+  width: 40px;
+  height: 40px;
+  margin-left: 47px;
+  border-radius: 50px;
+}
+
+.UserBlock__menu {
+  position: absolute;
+  top: 44px;
+  right: -96px;
+  z-index: 4;
+  width: 368px;
+  max-height: 734px;
+  border: 1px solid #eaf0fa;
+  box-shadow: 4px 16px 50px rgba(129, 135, 163, 0.24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-color);
+}
+
+.UserBlock__header {
+  width: 100%;
+  padding: 18px 28px 16px 32px;
+  border-bottom: 1px solid #eaf0fa;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.UserBlock__header > div > p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #5e7793;
+}
+
+.UserBlock__header-title {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.UserBlock__header-title_name {
+  width: max-content;
+  margin: 1px 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.UserBlock__header-data {
+  width: max-content;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.UserBlock__header-data_point {
+  width: 4px;
+  margin: 0 8px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.UserBlock__header-contact {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.UserBlock__header-contact_img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.UserBlock__menu-list {
+  width: 100%;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

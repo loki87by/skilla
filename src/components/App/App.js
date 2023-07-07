@@ -3,7 +3,7 @@ import { getList, getPersonsList, getMenu, getProfile } from "../../utils/Api";
 import { DATE_OPTIONS } from "../../utils/consts";
 import Menu from "../Menu/Menu";
 import Header from "../Header/Header";
-import Calls from "../Calls/Calls";
+import Main from "../Main/Main";
 import "../../vendor/normalize.css";
 import "./App.css";
 
@@ -12,8 +12,8 @@ function App() {
   const [persons, setPersons] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [search, setSearch] = useState("");
-  const [period, setPeriod] = useState(NaN);
+  const [search, setSearch] = useState("");/*
+  const [period, setPeriod] = useState(NaN); */
   const [filters, setFilters] = useState([]);
   const [rates, setRates] = useState([]);
   const [innerFilters, setInnerFilters] = useState([]);
@@ -140,15 +140,13 @@ function App() {
       <Menu />
       <main>
         <Header persons={persons}/>
-        <Calls
+        <Main
           startDate={startDate}
           endDate={endDate}
-          period={period}
           filters={filters}
           apiData={apiData}
           setFilters={setFilters}
           setSearch={setSearch}
-          setPeriod={setPeriod}
           setStartDate={setStartDate}
           setEndDate={setEndDate}
           setInnerFilters={setInnerFilters}

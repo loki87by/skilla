@@ -1,0 +1,76 @@
+.Calls {
+  width: 100%;
+  padding-left: 0;
+  margin-block-start: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-color);
+}
+
+li {
+  width: 100%;
+  list-style: none;
+}
+
+.Calls__item {
+  width: 100%;
+  padding: 25px 0 20px;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  color: #899cb1;
+}
+
+.Calls__item > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.Calls__item_check {
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  margin-right: 12px;
+}
+
+.Calls__item_type {
+  width: 23px;
+  margin-right: 30px;
+}
+
+.Calls__item_time {
+  width: 41px;
+  margin-right: 48px;
+}
+
+.Calls__item_worker {
+  width: 68px;
+  margin-right: 60px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Calls__item_call {
+  width: 45px;
+  margin-right: 281px;
+}
+
+.Calls__item_src {
+  width: 60px;
+  margin-right: 154px;
+}
+
+.Calls__item_rating {
+  width: 47px;
+  margin-right: 414px;
+}
+
+.Calls__item_record {
+  width: 89px;
+  margin-right: 40px;
+}

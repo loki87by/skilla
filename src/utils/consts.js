@@ -15,6 +15,14 @@ export const MONTHS = [
 
 export const WEEK_DAYS = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
 
+export const CALENDAR_ITEMS = [
+  "3 дня",
+  "Неделя",
+  "Месяц",
+  "Год",
+  "Указать даты",
+];
+
 export const HEADER_DATE_OPTIONS = {
   year: "numeric",
   month: "short",
@@ -25,6 +33,8 @@ export const HEADER_DATE_OPTIONS = {
   weekday: "long",
   hour12: false,
 };
+
+export const API_ERROR = "API не предоставил данных";
 
 export const DATE_OPTIONS = {
   year: "2-digit",
@@ -123,20 +133,33 @@ export const ERRORS = [
 ];
 
 export const HEADER_CELLS = [
-  {text: `Приветствовал \n клиента`, data: '94px', key: 'hello'},
-  {text: `Спросил \n имя`, data: '78px', key: 'name'},
-  {text: `Правильно \n озвучил цену`, data: '83px', key: 'coast'},
-  {text: `Сказал \n про скидку`, data: '63px', key: 'sale'},
-  {text: `Сохранил \n предзаказ`, data: '64px', key: 'save'},
-  {text: `Поблагодарил \n за звонок`, data: '92px', key: 'thanx'},
-  {text: `Без стоп \n слов`, data: '57px', key: 'non-stop'},
-]
+  { text: `Приветствовал \n клиента`, data: "94px", key: "hello" },
+  { text: `Спросил \n имя`, data: "78px", key: "name" },
+  { text: `Правильно \n озвучил цену`, data: "83px", key: "coast" },
+  { text: `Сказал \n про скидку`, data: "63px", key: "sale" },
+  { text: `Сохранил \n предзаказ`, data: "64px", key: "save" },
+  { text: `Поблагодарил \n за звонок`, data: "92px", key: "thanx" },
+  { text: `Без стоп \n слов`, data: "57px", key: "non-stop" },
+];
 
 export const WORKERS = [
-  {title: 'operator', list: ['Мирон Батонов', 'Алексей Ильин', 'Милана Константинопольская']},
-  {title: 'frmanager', list: ['Александра Сизых', 'Илья Алексеев', 'Владимир Петров']},
-  {title: 'accountant', list: ['Полина Калинина', 'Наталья Натальева', 'Константин Константинопольский']},
-]
+  {
+    title: "operator",
+    list: ["Мирон Батонов", "Алексей Ильин", "Милана Константинопольская"],
+  },
+  {
+    title: "frmanager",
+    list: ["Александра Сизых", "Илья Алексеев", "Владимир Петров"],
+  },
+  {
+    title: "accountant",
+    list: [
+      "Полина Калинина",
+      "Наталья Натальева",
+      "Константин Константинопольский",
+    ],
+  },
+];
 
 export function debounce(f, t, args) {
   let lastCall = Date.now();

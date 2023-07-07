@@ -1,0 +1,114 @@
+.Balance {
+  position: relative;
+  width: 145px;
+  height: 40px;
+  padding: 8px 12px;
+  margin-right: 48px;
+  border-radius: 48px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+  cursor: pointer;
+}
+
+.Balance__text {
+  color: #899cb1;
+}
+
+.Balance__text > span {
+  color: #122945;
+}
+
+.Balance:hover .Balance__text > span {
+  color: #0024cb;
+}
+
+.Balance__button {
+  width: 24px;
+  height: 24px;
+}
+
+.Balance__popup {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  z-index: 2;
+  width: 124px;
+  height: max-content;
+  padding: 18px;
+  padding-bottom: 0;
+  border-radius: 5px;
+  background-color: var(--bg-color);
+}
+
+.Balance__popup_close {
+  position: absolute;
+  z-index: 3;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.Balance__popup_data {
+  position: relative;
+  width: max-content;
+  height: 71px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Balance__popup_input {
+  width: 124px;
+  height: 48px;
+  padding: 13px 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: 0 !important;
+  outline-color: transparent !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  box-shadow: 0 0 0 0 rgba(0, 123, 255, 0) !important;
+}
+
+.Balance__popup_input::-webkit-outer-spin-button,
+.Balance__popup_input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Balance__popup_input,
+.Balance__popup_label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20.8px;
+  color: #121212;
+}
+
+.Balance__popup_label {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  border: none;
+}
+
+.Balance__popup_input:hover {
+  border-color: var(--secondary-color);
+}
+
+.Balance__popup_input:focus {
+  border-color: var(--third-color);
+}
+
+.Balance__popup_alert {
+  font-size: 14px;
+  line-height: 20.72px;
+}
+
+.Balance__popup_error,
+.Balance__popup_alert {
+  border-color: #ea1a4f !important;
+  color: #ea1a4f;
+}
