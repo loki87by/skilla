@@ -143,10 +143,10 @@
 
 .RateItem__text_header > span {
   position: absolute;
-    top: 8px;
-    right: -10px;
-    height: 5px;
-    display: flex;
+  top: 8px;
+  right: -10px;
+  height: 5px;
+  display: flex;
 }
 
 .RateItem__rate {

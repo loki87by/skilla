@@ -2,8 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { getRecord, getCallback } from "../../../../utils/Api.js";
+import { getAverage } from "../../../../utils/consts.js";
 import Player from "../Player/Player.js";
 import Sprite from "../../../Sprite/Sprite.js";
+import RateIcon from "../RateIcon/RateIcon.js";
+import RateText from "../RateText/RateText.js";
 import cross from "../../../../assets/cross.svg";
 import download from "../../../../assets/download.svg";
 import incomming from "../../../../assets/call_in.svg";
@@ -17,6 +20,7 @@ function Call(props) {
   const [focus, setFocus] = useState(false);
   const [audioSelect, setAudioSelect] = useState(false);
   const [record, setRecord] = useState(null);
+  const [rate, setRate] = useState("");
 
   function click(e) {
     if (
@@ -27,6 +31,26 @@ function Call(props) {
       props.setClicked(!clicked);
     }
   }
+  useEffect(() => {
+    if (props.rates) {
+      const ind = props.rates.findIndex((i) => i.id === props.data.id);
+
+      if (ind < 0) {
+        return;
+      } else {
+        const rates = props.rates[ind].rates;
+        /*
+        const sum = rates.reduce((p, i) => {
+          if (!p) {
+            p = 0;
+          }
+          return p + i;
+        }, 0); */
+        const average = getAverage(rates) //sum > 0 ? Math.ceil(sum / 7) : Math.floor(sum / 7);
+        setRate(average);
+      }
+    }
+  }, [props.data.id, props.rates]);
 
   useEffect(() => {
     if (focus && props.data.record !== "" && props.data.partnership_id !== "") {
@@ -246,7 +270,12 @@ function Call(props) {
           </div>
         ) : (
           <>
-            {props.data.errors.length > 0 ? (
+            {rate !== "" ? (
+              <div className="Call__rating">
+                <RateIcon average={rate} />
+                <RateText average={rate} />
+              </div>
+            ) : props.data.errors.length > 0 ? (
               <p className="Call__rating Call__rating-noscript">
                 {props.data.errors[0]}
               </p>

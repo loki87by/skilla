@@ -4,10 +4,6 @@
   align-items: center;
   cursor: pointer;
 }
-/*
-.Timelaps__arrow-left {
-  transform: rotate(270deg);
-} */
 
 .Timelaps__icon {
   margin-right: 8px;
@@ -18,10 +14,6 @@
   margin-right: 22px;
   color: #005ff8;
 }
-/*
-.Timelaps__arrow-right {
-  transform: rotate(90deg);
-} */
 
 .Timelaps__select {
   position: absolute;

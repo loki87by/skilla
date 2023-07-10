@@ -79,7 +79,12 @@ export const CALLS = [
     key: "from_type[]",
     value: "app",
   },
-  /* {text: 'Прочие звонки', active: 'filter', key: 'not', values: ['clients', 'new_clients', 'workers', 'app']}, */
+  {
+    text: "Прочие звонки",
+    active: "filter",
+    key: "not",
+    values: ["clients", "new_clients", "workers", "app"],
+  },
 ];
 
 export const SOURCES = [
@@ -102,9 +107,9 @@ export const RATES = [
       { key: "not", params: ["errors", ["Скрипт не использован"]] },
     ],
     inner: [
-      { key: "not", params: ["rate", "good"] },
-      { key: "not", params: ["rate", "bad"] },
-      { key: "not", params: ["rate", "awesome"] },
+      { key: "not", params: [0] },
+      { key: "not", params: [-1] },
+      { key: "not", params: [1] },
     ],
   },
   {
@@ -113,23 +118,166 @@ export const RATES = [
     key: "errors[]",
     value: "noscript",
   },
-  { text: "Плохо", active: "none", decorate: "pinkStyle" },
-  { text: "Хорошо", active: "none", decorate: "greyStyle" },
-  { text: "Отлично", active: "none", decorate: "greenStyle" },
-  { active: "none", decorate: "redCircle" },
-  { active: "none", decorate: "greyCircles" },
-  { active: "none", decorate: "greenCircles" },
+  {
+    text: "Плохо",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [-1] }],
+    decorate: "pinkStyle",
+  },
+  {
+    text: "Хорошо",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [0] }],
+    decorate: "greyStyle",
+  },
+  {
+    text: "Отлично",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [1] }],
+    decorate: "greenStyle",
+  },
+  {
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [-1] }],
+    decorate: "redCircle",
+  },
+  {
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [0] }],
+    decorate: "greyCircles",
+  },
+  {
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [1] }],
+    decorate: "greenCircles",
+  },
+];
+
+export const MANAGERS = [
+  { text: "Все сотрудники", active: "reset", keys: [] },
+  {
+    text: `${API_ERROR}, дальнейшие строки представлены лишь для ознакомления`,
+    active: "none",
+  },
+  { text: "Константин К.", image: true, active: "none" },
+  { text: "Полина З.", image: true, active: "none" },
 ];
 
 export const ERRORS = [
   { text: "Все ошибки", active: "reset", keys: [] },
-  { text: "Приветствие", active: "none" },
-  { text: "Имя", active: "none" },
-  { text: "Цена", active: "none" },
-  { text: "Скидка", active: "none" },
-  { text: "Предзаказ", active: "none" },
-  { text: "Благодарность", active: "none" },
-  { text: "Стоп слова", active: "none" },
+  {
+    text: "Приветствие",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [0], mistake: true }],
+  },
+  {
+    text: "Имя",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [1], mistake: true }],
+  },
+  {
+    text: "Цена",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [2], mistake: true }],
+  },
+  {
+    text: "Скидка",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [3], mistake: true }],
+  },
+  {
+    text: "Предзаказ",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [4], mistake: true }],
+  },
+  {
+    text: "Благодарность",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [5], mistake: true }],
+  },
+  {
+    text: "Стоп слова",
+    active: "filter",
+    values: ["errors[]"],
+    key: "is",
+    outer: [
+      { key: "not", params: ["record", ""] },
+      { key: "not", params: ["errors", ["Скрипт не использован"]] },
+    ],
+    inner: [{ key: "is", params: [6], mistake: true }],
+  },
 ];
 
 export const HEADER_CELLS = [
@@ -173,6 +321,17 @@ export function debounce(f, t, args) {
     }
     lastCallTimer = setTimeout(() => f(args), t);
   };
+}
+
+export function getAverage(array) {
+  const sum = array.reduce((p, i) => {
+    if (!p) {
+      p = 0;
+    }
+    return p + i;
+  }, 0);
+  const average = sum > 0 ? Math.ceil(sum / 7) : Math.floor(sum / 7);
+  return average;
 }
 
 export function getRateColor(num) {

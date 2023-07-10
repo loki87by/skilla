@@ -9,13 +9,12 @@
 
 .Main__filters {
   width: 100%;
+  margin-top: 24px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-}
-
-.Main__filters-params {
-  margin-top: 24px;
   justify-content: space-between;
 }
 
+.Main__filters-params {
+  justify-content: flex-end;
+}

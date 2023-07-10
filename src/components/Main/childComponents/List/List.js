@@ -1,5 +1,8 @@
 import React from "react";
 import { BASIC_FILTERS_TEXT } from "../../../../utils/consts";
+import RateIcon from "../RateIcon/RateIcon";
+import RateText from "../RateText/RateText";
+import avatar from "../../../../assets/avatar2.png";
 import "./List.css";
 
 function List(props) {
@@ -27,12 +30,27 @@ function List(props) {
     props.setFiltersChanged(true);
   }
 
-  function filterDB(key, values, text, outer, inner) {
+  function filterDB(key, values, text, outer, inner, decorate) {
     if (key === "is") {
       resetFilter(values.slice());
       props.setOuterFilters(outer);
-      props.setInnerFilters(inner);
+
+      if (
+        (!decorate && !inner[0].mistake) ||
+        (typeof decorate === "string" && props.rates > 0) ||
+        (inner[0].mistake && props.rates > 0)
+      ) {
+        props.setInnerFilters(inner);
+      } else if (
+        (typeof decorate === "string" && props.rates === 0) ||
+        (inner[0].mistake && props.rates === 0)
+      ) {
+        alert(
+          'API не предоставляет данные об оценках. Для начала выберите "Распознать" чтоб выставить оценки.'
+        );
+      }
       props.setFiltersChanged(true);
+      props.setFiltersSetted(true);
       const base = BASIC_FILTERS_TEXT.slice();
       base[props.index] = text;
       props.setFiltersCurrent(base);
@@ -66,7 +84,8 @@ function List(props) {
                     item.values,
                     item.text,
                     item.outer,
-                    item.inner
+                    item.inner,
+                    item.decorate
                   );
                 }
               : () => {
@@ -75,24 +94,24 @@ function List(props) {
           }
         >
           {item.image ? (
-            <img
-              className="List__item-image"
-              src={item.image.src}
-              alt={item.image.alt}
-            />
+            <img className="List__item-image" src={avatar} alt="avatar" />
           ) : (
             ""
           )}
           {item.text ? (
-            <p
-              className={`List__item-text ${
-                item.decorate === "pinkStyle" && "List__item-text_pink"
-              } ${item.decorate === "greyStyle" && "List__item-text_grey"}  ${
-                item.decorate === "greenStyle" && "List__item-text_green"
-              }`}
-            >
-              {item.text}
-            </p>
+            item.decorate ? (
+              <RateText
+                average={
+                  item.decorate === "pinkStyle"
+                    ? -1
+                    : item.decorate === "greenStyle"
+                    ? 1
+                    : 0
+                }
+              />
+            ) : (
+              <p className="List__item-text">{item.text}</p>
+            )
           ) : (
             ""
           )}
@@ -101,28 +120,9 @@ function List(props) {
           ) : (
             ""
           )}
-          {item.decorate === "redCircle" ? (
-            <div className="List__item-icon List__item-icon_magenta"></div>
-          ) : (
-            ""
-          )}
-          {item.decorate === "greyCircles" ? (
-            <>
-              <div className="List__item-icon List__item-icon_grey"></div>
-              <div className="List__item-icon List__item-icon_grey"></div>
-            </>
-          ) : (
-            ""
-          )}
-          {item.decorate === "greenCircles" ? (
-            <>
-              <div className="List__item-icon List__item-icon_green"></div>
-              <div className="List__item-icon List__item-icon_green"></div>
-              <div className="List__item-icon List__item-icon_green"></div>
-            </>
-          ) : (
-            ""
-          )}
+          {item.decorate === "redCircle" ? <RateIcon average={-1} /> : ""}
+          {item.decorate === "greyCircles" ? <RateIcon average={0} /> : ""}
+          {item.decorate === "greenCircles" ? <RateIcon average={1} /> : ""}
         </div>
       ))}
     </section>

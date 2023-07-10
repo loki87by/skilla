@@ -2,6 +2,7 @@
   position: absolute;
   right: 0;
   top: calc(100% + 12px);
+  z-index: 2;
   width: 202px;
   height: max-content;
   border: 1px solid #eaf0fa;
@@ -13,8 +14,9 @@
 }
 
 .List__item {
-  width: 100%;
+  width: calc(100% - 20px);
   height: max-content;
+  padding-left: 20px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -34,7 +36,6 @@
 
 .List__item-text {
   margin: 6px 0;
-  margin-left: 20px;
   font-family: "SF Pro Display";
   font-style: normal;
   font-weight: 400;
@@ -43,59 +44,12 @@
   color: #899cb1;
 }
 
-.List__item-text_pink,
-.List__item-text_grey,
-.List__item-text_green {
-  padding: 6px 8px;
-  margin: 6px 20px;
-  border-radius: 4px;
-  line-height: 1;
-}
-
-.List__item-text_pink {
-  border: 1px solid #ea1a4f;
-  color: #ea1a4f;
-  background: #fee9ef;
-}
-
-.List__item-text_grey {
-  border: 1px solid #adbfdf;
-  color: #122945;
-  background: #d8e4fb;
-}
-
-.List__item-text_green {
-  border: 1px solid #28a879;
-  color: #00a775;
-  background: #dbf8ef;
-}
-
 .List__item-icon {
   width: 8px;
   height: 8px;
   margin-left: 8px;
   border-radius: 50%;
   background-color: #ffd500;
-}
-
-.List__item-icon_magenta {
-  margin: 16px 20px;
-  background-color: #ea1a4f;
-}
-
-.List__item-icon_grey {
-  margin: 16px 2px;
-  background-color: #adbfdf;
-}
-
-.List__item-icon_green {
-  margin: 16px 2px;
-  background-color: #28a879;
-}
-
-.List__item-icon_grey:first-of-type,
-.List__item-icon_green:first-of-type {
-  margin-left: 20px;
 }
 
 .List__item:first-of-type > .List__item-text {

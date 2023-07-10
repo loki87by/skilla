@@ -138,7 +138,13 @@
 .Call__rating {
   width: 146px;
   margin-right: 66px;
+  display: flex;
   align-items: flex-start;
+}
+
+.Call__rating-rate {
+  width: max-content;
+  margin: auto;
 }
 
 .Call__rating-noscript {

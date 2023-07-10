@@ -30,7 +30,6 @@ function Rates(props) {
           return b.rates[rateIndex] - a.rates[rateIndex];
         });
       }
-
       setNewData(array);
     }
   }, [data, isRatesUpdated, sorted]);
@@ -40,7 +39,7 @@ function Rates(props) {
       setData(newData);
       setRatesUpdated(false);
     }
-  }, [isRatesUpdated, newData, props]);
+  }, [data, isRatesUpdated, newData, props]);
 
   useEffect(() => {
     if (props.array) {
@@ -222,6 +221,7 @@ function Rates(props) {
       }
     });
     props.setRecognizedData(data);
+    props.setRates(newData);
     props.setRatesOpened(false);
   }
 

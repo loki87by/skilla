@@ -60,7 +60,9 @@ function RateItem(props) {
           </p>
           <p className="RateItem__text_call">
             Распознано / По скрипту
-            <span className="RateItem__text RateItem__text_clarification">%</span>
+            <span className="RateItem__text RateItem__text_clarification">
+              %
+            </span>
           </p>
         </div>
       ) : (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getList, getPersonsList, getMenu, getProfile } from "../../utils/Api";
-import { DATE_OPTIONS } from "../../utils/consts";
+import { getList, getPersonsList, getProfile } from "../../utils/Api";
+import { DATE_OPTIONS, getAverage } from "../../utils/consts";
 import Menu from "../Menu/Menu";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -12,8 +12,7 @@ function App() {
   const [persons, setPersons] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [search, setSearch] = useState("");/*
-  const [period, setPeriod] = useState(NaN); */
+  const [search, setSearch] = useState("");
   const [filters, setFilters] = useState([]);
   const [rates, setRates] = useState([]);
   const [innerFilters, setInnerFilters] = useState([]);
@@ -70,21 +69,43 @@ function App() {
             if (innerFilters.length > 0) {
               innerFilters.forEach((i) => {
                 if (i.key === "is") {
-                  const tmp = arr.filter((item) => {
-                    if (item[i.params[0]] === item[i.params[1]]) {
-                      return i;
-                    } else {
-                      return null;
-                    }
-                  });
-                  arr = tmp;
+                  if (!i.mistake) {
+                    const tmp = arr.filter((item) => {
+                      if (
+                        rates.some(
+                          (r) =>
+                            r.id === item.id &&
+                            getAverage(r.rates) === i.params[0]
+                        )
+                      ) {
+                        return i;
+                      } else {
+                        return null;
+                      }
+                    });
+                    arr = tmp;
+                  } else {
+                    const tmp = arr.filter((item) => {
+                      if (
+                        rates.some(
+                          (r) => r.id === item.id && r.rates[i.params[0]] === -1
+                        )
+                      ) {
+                        return i;
+                      } else {
+                        return null;
+                      }
+                    });
+                    arr = tmp;
+                  }
                 }
                 if (i.key === "not") {
                   const tmp = arr.filter((item) => {
                     if (
                       rates.some(
                         (r) =>
-                          r.id === item.id && r[i.params[0]] === r[i.params[1]]
+                          r.id === item.id &&
+                          getAverage(r.rates) === i.params[0]
                       )
                     ) {
                       return null;
@@ -99,9 +120,7 @@ function App() {
             setApiData(arr);
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     }
   }, [endDate, filters, innerFilters, outerFilters, rates, search, startDate]);
 
@@ -109,16 +128,6 @@ function App() {
     getPersonsList()
       .then((res) => {
         setPersons(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    getMenu()
-      .then((res) => {
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -139,12 +148,14 @@ function App() {
     <>
       <Menu />
       <main>
-        <Header persons={persons}/>
+        <Header persons={persons} />
         <Main
           startDate={startDate}
           endDate={endDate}
           filters={filters}
           apiData={apiData}
+          rates={rates}
+          persons={persons}
           setFilters={setFilters}
           setSearch={setSearch}
           setStartDate={setStartDate}

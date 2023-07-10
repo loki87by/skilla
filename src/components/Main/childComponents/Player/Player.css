@@ -14,10 +14,10 @@
   min-width: 36px;
   margin-right: 12px;
   margin-left: 20px;
-font-weight: 400;
-font-size: 15px;
-line-height: 145%;
-color: #122945;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 145%;
+  color: #122945;
 }
 
 .Player__button {
@@ -31,8 +31,8 @@ color: #122945;
   height: 4px;
   margin-right: 18px;
   border-radius: 50px;
-background-color: var(--primary-color);
-cursor: pointer;
+  background-color: var(--primary-color);
+  cursor: pointer;
 }
 
 .Player__process-output {

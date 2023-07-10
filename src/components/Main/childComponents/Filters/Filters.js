@@ -3,6 +3,7 @@ import {
   BASIC_FILTERS_TEXT,
   TYPES,
   CALLS,
+  MANAGERS,
   SOURCES,
   RATES,
   ERRORS,
@@ -20,7 +21,17 @@ function Filters(props) {
   const [isFiltersChanged, setFiltersChanged] = useState(false);
   const [listData, setListData] = useState(null);
   const [filtersCurrent, setFiltersCurrent] = useState(BASIC_FILTERS_TEXT);
-  const workers = null;
+  const [workers, setWorkers] = useState(null);
+
+  useEffect(() => {
+
+    if(props.persons && props.persons.length > 0) {
+      setWorkers(props.persons)
+    } else {
+      setWorkers(MANAGERS)
+    }
+  }, [props.persons])
+
   const filters = [TYPES, CALLS, workers, SOURCES, RATES, ERRORS];
 
   function resetFilters() {
@@ -86,6 +97,7 @@ function Filters(props) {
             <List
               data={listData}
               index={ind}
+              rates={props.rates}
               filters={props.filters}
               setFilters={props.setFilters}
               setInnerFilters={props.setInnerFilters}
