@@ -73,6 +73,8 @@
 .Call__time {
   width: 38px;
   margin: 0;
+  font-size: 15px;
+  line-height: 21px;
 }
 
 .Call__worker {
@@ -100,6 +102,8 @@
 .Call__phone {
   width: 246px;
   margin-right: 80px;
+  font-size: 15px;
+  line-height: 21px;
 }
 
 .Call__src {
@@ -112,8 +116,8 @@
 .Call__select {
   width: 522px;
   height: 48px;
-  padding-right: 17px;
-  padding-left: 20px;
+  padding-right: 20px;
+  padding-left: 17px;
   margin-left: 42px;
   border-radius: 32px;
   box-sizing: border-box;
@@ -137,7 +141,7 @@
 
 .Call__rating {
   width: 146px;
-  margin-right: 66px;
+  margin-right: 54px;
   display: flex;
   align-items: flex-start;
 }
@@ -152,6 +156,8 @@
 }
 
 .Call__rating-button {
+  width: max-content;
+  margin-right: 76px;
   padding: 9px 24px 11px;
   border: 1px solid var(--secondary-color);
   border-radius: 4px;
@@ -164,6 +170,9 @@
 
 .Call__record {
   width: 352px;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 0.01em;
   text-align: end;
 }
 

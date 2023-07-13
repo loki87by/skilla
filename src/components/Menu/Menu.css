@@ -21,15 +21,16 @@
   padding-left: 12px;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .Menu-item > p {
   padding-top: 15px;
   padding-bottom: 17px;
   font-weight: 500;
-font-size: 16px;
-line-height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .Menu-item:last-of-type {
@@ -39,6 +40,20 @@ line-height: 24px;
 .Menu-item_selected {
   position: relative;
   background-color: #d8e4fb52;
+}
+
+.Menu-item_selected::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 52px;
+  background-color: var(--secondary-color);
+}
+
+.Menu-item_selected > p {
+  color: var(--bg-color);
 }
 
 .Menu-item_selected::after {
@@ -53,12 +68,18 @@ line-height: 24px;
 }
 
 .Menu-item_image {
-  margin-right: 15px;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
 }
 
 .Menu-button {
   width: 200px;
   height: 52px;
+  padding: 2px 6px 2px 12px;
   margin-left: 20px;
   margin-bottom: 32px;
   border-radius: 4px;
@@ -67,4 +88,10 @@ line-height: 24px;
   justify-content: space-around;
   color: var(--bg-color);
   background-color: #005ff8;
+}
+
+.Menu-button > p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
 }

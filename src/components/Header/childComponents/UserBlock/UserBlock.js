@@ -51,9 +51,13 @@ function UserBlock(props) {
         />
         {isShowPerson ? (
           <div className="UserBlock__persons-list">
-            {!props.propsPersons ? <p>{API_ERROR}</p> : ""}
+            {!props.propsPersons ? (
+              <p>{`${API_ERROR}, дальнейшие строки представлены лишь для ознакомления`}</p>
+            ) : (
+              ""
+            )}
             {props.persons.map((i, index) => (
-              <p
+              <p className="UserBlock__name"
                 key={props.propsPersons ? `person-${i.id}` : `person-${index}`}
               >{`${i.name} ${i.surname}`}</p>
             ))}
@@ -85,6 +89,7 @@ function UserBlock(props) {
                 height="24"
                 title="выйти"
                 id="exit"
+                class="UserBlock__header-title_exit"
               />
             </div>
             <div className="UserBlock__header-data">

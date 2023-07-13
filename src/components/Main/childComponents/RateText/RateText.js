@@ -23,8 +23,8 @@ function RateText(props) {
   };
 
   return (
-    <p
-      className="RateText"
+    <span
+      className={`RateText ${props.class}`}
       style={{
         color: getColor(),
         backgroundColor: getBackground(),
@@ -33,7 +33,7 @@ function RateText(props) {
       }}
     >
       {getRate(props.average)}
-    </p>
+    </span>
   );
 }
 

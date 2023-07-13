@@ -36,7 +36,9 @@ function Menu() {
           key={index}
           className={`Menu-item ${item.selected && "Menu-item_selected"}`}
         >
-          <img className="Menu-item_image" src={item.img} alt={item.title} />
+          <div className="Menu-item_image">
+            <img src={item.img} alt={item.title} />
+          </div>
           <p>{item.title}</p>
         </div>
       ))}

@@ -5,6 +5,7 @@ import Menu from "../Menu/Menu";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import "../../vendor/normalize.css";
+import "../../vendor/sfProFont/stylesheet.css";
 import "./App.css";
 
 function App() {

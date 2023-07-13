@@ -24,7 +24,9 @@ function Search(props) {
   });
 
   return (
-    <div className={`Search ${props.class}`}>
+    <div className={`Search ${props.class} ${
+      searchIsOpen && props.openedClass
+    }`}>
     <Sprite
       src={search}
       click={openSearch}

@@ -21,7 +21,7 @@ function List(props) {
 
   function setFilter(key, value, text) {
     props.setFiltersSetted(true);
-    const base = BASIC_FILTERS_TEXT.slice();
+    const base = props.filtersCurrent.slice();
     base[props.index] = text;
     props.setFiltersCurrent(base);
     const arr = props.filters.slice(0);
@@ -51,7 +51,7 @@ function List(props) {
       }
       props.setFiltersChanged(true);
       props.setFiltersSetted(true);
-      const base = BASIC_FILTERS_TEXT.slice();
+      const base = props.filtersCurrent.slice();
       base[props.index] = text;
       props.setFiltersCurrent(base);
     }
@@ -99,7 +99,7 @@ function List(props) {
             ""
           )}
           {item.text ? (
-            item.decorate ? (
+            item.decorate && item.decorate !== "yellowCircle" ? (
               <RateText
                 average={
                   item.decorate === "pinkStyle"

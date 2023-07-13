@@ -24,13 +24,12 @@ function Filters(props) {
   const [workers, setWorkers] = useState(null);
 
   useEffect(() => {
-
-    if(props.persons && props.persons.length > 0) {
-      setWorkers(props.persons)
+    if (props.persons && props.persons.length > 0) {
+      setWorkers(props.persons);
     } else {
-      setWorkers(MANAGERS)
+      setWorkers(MANAGERS);
     }
-  }, [props.persons])
+  }, [props.persons]);
 
   const filters = [TYPES, CALLS, workers, SOURCES, RATES, ERRORS];
 
@@ -84,7 +83,14 @@ function Filters(props) {
             isListOpen && openedList === ind ? hideList() : showList(ind, fil);
           }}
         >
-          <p className="Filters__button-text">{filtersCurrent[ind]}</p>
+          <p
+            className={`Filters__button-text ${
+              filtersCurrent[ind] !== BASIC_FILTERS_TEXT[ind] &&
+              "Filters__button-text_selected"
+            }`}
+          >
+            {filtersCurrent[ind]}
+          </p>
           <Sprite
             src={arrow}
             style={!isListOpen ? { transform: "rotate(180deg)" } : {}}
@@ -96,6 +102,7 @@ function Filters(props) {
           {isListOpen && openedList === ind ? (
             <List
               data={listData}
+              filtersCurrent={filtersCurrent}
               index={ind}
               rates={props.rates}
               filters={props.filters}

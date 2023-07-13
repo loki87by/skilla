@@ -22,3 +22,7 @@
 .Filters__button-text:hover {
   color: var(--secondary-color);
 }
+
+.Filters__button-text_selected {
+  color: var(--secondary-color);
+}

@@ -52,10 +52,6 @@
   background-color: #ffd500;
 }
 
-.List__item:first-of-type > .List__item-text {
-  color: var(--secondary-color);
-}
-
 .List__item:hover > .List__item-text {
   color: #122945;
 }

@@ -39,14 +39,7 @@ function Call(props) {
         return;
       } else {
         const rates = props.rates[ind].rates;
-        /*
-        const sum = rates.reduce((p, i) => {
-          if (!p) {
-            p = 0;
-          }
-          return p + i;
-        }, 0); */
-        const average = getAverage(rates) //sum > 0 ? Math.ceil(sum / 7) : Math.floor(sum / 7);
+        const average = getAverage(rates)
         setRate(average);
       }
     }
@@ -173,6 +166,10 @@ function Call(props) {
     recognize(selected);
   }
 
+  function phonePrefixer(str) {
+    return `+7 (${str.slice(1, 4)}) ${str.slice(4, 7)}-${str.slice(7, 9)}-${str.slice(9, 11)}`
+  }
+
   return (
     <li
       onMouseOut={(e) => {
@@ -232,7 +229,7 @@ function Call(props) {
             <div className="Call__icon"></div>
           )}
         </div>
-        <p className="Call__phone">{props.data.partner_data.phone}</p>
+        <p className="Call__phone">{phonePrefixer(props.data.partner_data.phone)}</p>
         <p className="Call__src">{props.data.source}</p>
         {audioSelect ? (
           <div className="Call__select">
@@ -247,7 +244,7 @@ function Call(props) {
                 recognizeAll(props.withAudioArray, props.checkedSounds);
               }}
             >
-              Распознать все
+              Распознать
             </p>
             <Sprite
               src={download}

@@ -27,15 +27,14 @@
 .Rates__content-header {
   width: 100%;
   height: 58px;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
   height: max-content;
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
 .Rates__content-header_title {
-  margin-top: 16px;
+  margin-top: 20px;
   margin-bottom: 13px;
   font-weight: 500;
   font-size: 18px;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HEADER_CELLS, getRate, getRateColor } from "../../../../utils/consts";
 import Sprite from "../../../Sprite/Sprite";
+import RateText from '../RateText/RateText'
 import triangle_down from "../../../../assets/triangle_down.svg";
 import "./RateItem.css";
 
@@ -28,7 +29,7 @@ function RateItem(props) {
   }
 
   return (
-    <div className="RateItem">
+    <div className={`RateItem ${props.isTotal && "RateItem__total"}`}>
       {props.isHeader || props.isTotal ? (
         <p
           className={`RateItem__text RateItem__text_manager ${
@@ -253,7 +254,7 @@ function RateItem(props) {
           ))}
       <p
         style={
-          props.isTotal && props.averageRate !== 0
+          /* props.isTotal && props.averageRate !== 0
             ? {
                 color: getRateColor(props.averageRate),
                 marginLeft: "-20px",
@@ -265,15 +266,17 @@ function RateItem(props) {
                 color: getRateColor(props.getAverage(props.data.rates)),
                 marginLeft: "-20px",
               }
-            : { marginLeft: "-20px" }
+            : */props.isHeader ? { marginLeft: "-20px" } : {}
         }
         className="RateItem__text RateItem__text_cell"
       >
         {props.isHeader
           ? "Оценка"
           : props.isTotal
-          ? getRate(props.averageRate)
-          : getRate(props.getAverage(props.data.rates))}
+          ?
+          <RateText class="RateItem__text_rate-clarification" average={getRate(props.averageRate)} />
+          :
+          <RateText class="RateItem__text_rate-clarification" average={getRate(props.getAverage(props.data.rates))} />}
       </p>
     </div>
   );

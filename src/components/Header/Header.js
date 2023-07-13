@@ -66,7 +66,10 @@ function Header(props) {
   return (
     <header className="Header">
       <div className="Header__block">
-        <time>{stringToday.split(".")[0]}</time>
+        <time>{`${stringToday
+          .split(".")[0]
+          .charAt(0)
+          .toUpperCase()}${stringToday.split(".")[0].slice(1)}`}</time>
         {analitics.map((item, index) => (
           <div key={index} className="Header__analitics">
             <div className="Header__analitics-text">
@@ -83,9 +86,11 @@ function Header(props) {
       </div>
       <div className="Header__block">
         <Search
-          class="Header__block-search"
           searchValue={searchValue}
           label={searchResult[0]}
+          class="Header__block-search"
+          openedClass="Header__block-search_opened"
+          /* containerClass="Header__block-search_container" */
           iconClass="Header__block-search_icon"
           inputClass="Header__block-search_input"
           labelFunc={checkResult}

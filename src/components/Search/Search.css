@@ -14,12 +14,15 @@
 .Search__input {
   width: 482px;
   height: 40px;
-  padding: 10px 46px;
+  padding: 9px 46px 11px;
   margin: -10px 0;
   box-sizing: border-box;
   background: var(--bg-color);
   border: 1px solid #eaf0fa;
   border-radius: 48px;
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
 }
 
 .Search__label {

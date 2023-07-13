@@ -1,6 +1,7 @@
 .RateItem {
   width: 1337px;
   height: 60px;
+  border-bottom: 1px solid #EAF0FA;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -8,8 +9,13 @@
 
 .RateItem:first-of-type {
   height: 58px;
-  margin-bottom: 2px;
+  margin-bottom: -6px;
   align-items: flex-start;
+}
+
+.RateItem__total {
+  height: 52px;
+  margin-bottom: 8px;
 }
 
 .RateItem__text {
@@ -77,6 +83,14 @@
   line-height: 1;
 }
 
+.RateItem__text_statistic > p:first-of-type {
+  min-width: max-content;
+  max-width: max-content;
+  margin: auto;
+  margin-bottom: 8px;
+  margin-right: 0;
+}
+
 .RateItem__text_statistic > p:last-of-type {
   margin-bottom: 0;
 }
@@ -135,10 +149,17 @@
   margin-right: 15px;
 }
 
+.RateItem__text_rate-clarification {
+  min-width: max-content;
+  max-width: max-content;
+  margin-left: -20px;
+}
+
 .RateItem__text_header {
   position: relative;
   width: max-content;
   white-space: break-spaces;
+  line-height: 17.36px;
 }
 
 .RateItem__text_header > span {

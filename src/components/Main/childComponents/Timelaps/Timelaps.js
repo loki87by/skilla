@@ -88,8 +88,8 @@ function Timelaps(props) {
         src={arrow}
         click={showDateSelect}
         style={{ transform: "rotate(270deg)" }}
-        width="12"
-        height="8"
+        width="10"
+        height="6"
         title="выбрать период"
         id="arrow"
       />
@@ -109,8 +109,8 @@ function Timelaps(props) {
         src={arrow}
         click={showDateSelect}
         style={{ transform: "rotate(90deg)" }}
-        width="12"
-        height="8"
+        width="10"
+        height="6"
         title="выбрать период"
         id="arrow"
       />

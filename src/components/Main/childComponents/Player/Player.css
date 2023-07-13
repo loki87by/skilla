@@ -4,6 +4,7 @@
   height: 48px;
   margin-right: 57px;
   margin-left: 19px;
+  padding-top: 1px;
   border-radius: 48px;
   display: flex;
   align-items: center;
@@ -43,5 +44,6 @@
 }
 
 .Player__download {
+  margin-top: 5px;
   margin-right: 22px;
 }
