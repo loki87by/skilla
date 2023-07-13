@@ -1,5 +1,5 @@
 import React from "react";
-import { BASIC_FILTERS_TEXT } from "../../../../utils/consts";
+import { BASIC_FILTERS_TEXT } from "../../../../utils/db";
 import RateIcon from "../RateIcon/RateIcon";
 import RateText from "../RateText/RateText";
 import avatar from "../../../../assets/avatar2.png";

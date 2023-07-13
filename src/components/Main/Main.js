@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { debounce } from "../../utils/consts";
+import { debounce } from "../../utils/helpers";
 import Info from "./childComponents/Info/Info";
 import Search from "../Search/Search.js";
 import Filters from "./childComponents/Filters/Filters";

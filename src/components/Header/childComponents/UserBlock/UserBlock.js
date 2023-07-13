@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_ERROR } from "../../../../utils/consts";
+import { API_ERROR } from "../../../../utils/db";
 import Sprite from "../../../Sprite/Sprite";
 import UserList from "../UserList/UserList";
 import avatar from "../../../../assets/avatar.png";

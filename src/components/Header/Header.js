@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { HEADER_DATE_OPTIONS, WORKERS, API_ERROR } from "../../utils/consts";
+import { HEADER_DATE_OPTIONS } from "../../utils/consts";
+import { WORKERS, API_ERROR } from "../../utils/db";
 import Search from "../Search/Search";
 import UserBlock from "./childComponents/UserBlock/UserBlock";
 import "./Header.css";
@@ -90,7 +91,6 @@ function Header(props) {
           label={searchResult[0]}
           class="Header__block-search"
           openedClass="Header__block-search_opened"
-          /* containerClass="Header__block-search_container" */
           iconClass="Header__block-search_icon"
           inputClass="Header__block-search_input"
           labelFunc={checkResult}

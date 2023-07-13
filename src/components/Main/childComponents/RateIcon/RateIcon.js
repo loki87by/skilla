@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getRateColor } from "../../../../utils/consts";
+import { getRateColor } from "../../../../utils/helpers";
 import "./RateIcon.css";
 
 function RateIcon(props) {

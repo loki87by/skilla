@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { getRecord, getCallback } from "../../../../utils/Api.js";
-import { getAverage } from "../../../../utils/consts.js";
+import { getAverage } from "../../../../utils/helpers.js";
 import Player from "../Player/Player.js";
 import Sprite from "../../../Sprite/Sprite.js";
 import RateIcon from "../RateIcon/RateIcon.js";

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getList, getPersonsList, getProfile } from "../../utils/Api";
-import { DATE_OPTIONS, getAverage } from "../../utils/consts";
+import { DATE_OPTIONS } from "../../utils/consts";
+import { getAverage } from "../../utils/helpers";
 import Menu from "../Menu/Menu";
 import Header from "../Header/Header";
 import Main from "../Main/Main";

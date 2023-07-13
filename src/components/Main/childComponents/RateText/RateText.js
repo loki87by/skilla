@@ -1,5 +1,5 @@
 import React from "react";
-import { getRateColor, getRate } from "../../../../utils/consts";
+import { getRateColor, getRate } from "../../../../utils/helpers";
 import "./RateText.css";
 
 function RateText(props) {

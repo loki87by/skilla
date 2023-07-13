@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { HEADER_CELLS, getRate, getRateColor } from "../../../../utils/consts";
+import { HEADER_CELLS } from "../../../../utils/db";
+import { getRate, getRateColor } from "../../../../utils/helpers";
 import Sprite from "../../../Sprite/Sprite";
 import RateText from '../RateText/RateText'
 import triangle_down from "../../../../assets/triangle_down.svg";
@@ -253,20 +254,7 @@ function RateItem(props) {
             </div>
           ))}
       <p
-        style={
-          /* props.isTotal && props.averageRate !== 0
-            ? {
-                color: getRateColor(props.averageRate),
-                marginLeft: "-20px",
-              }
-            : !props.isTotal &&
-              !props.isHeader &&
-              props.getAverage(props.data.rates) !== 0
-            ? {
-                color: getRateColor(props.getAverage(props.data.rates)),
-                marginLeft: "-20px",
-              }
-            : */props.isHeader ? { marginLeft: "-20px" } : {}
+        style={props.isHeader ? { marginLeft: "-20px" } : {}
         }
         className="RateItem__text RateItem__text_cell"
       >

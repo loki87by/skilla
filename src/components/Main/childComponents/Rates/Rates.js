@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { HEADER_CELLS } from "../../../../utils/consts";
+import { HEADER_CELLS } from "../../../../utils/db";
 import RateItem from "../RateItem/RateItem";
 import Sprite from "../../../Sprite/Sprite";
 import arrow from "../../../../assets/arrow.svg";

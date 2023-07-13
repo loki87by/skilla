@@ -7,7 +7,7 @@ import {
   SOURCES,
   RATES,
   ERRORS,
-} from "../../../../utils/consts";
+} from "../../../../utils/db";
 import List from "../List/List";
 import Sprite from "../../../Sprite/Sprite";
 import cross from "../../../../assets/cross.svg";
