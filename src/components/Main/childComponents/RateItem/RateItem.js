@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { HEADER_CELLS } from "../../../../utils/db";
 import { getRate, getRateColor } from "../../../../utils/helpers";
 import Sprite from "../../../Sprite/Sprite";
-import RateText from '../RateText/RateText'
+import RateText from "../RateText/RateText";
 import triangle_down from "../../../../assets/triangle_down.svg";
 import "./RateItem.css";
 
@@ -254,17 +254,22 @@ function RateItem(props) {
             </div>
           ))}
       <p
-        style={props.isHeader ? { marginLeft: "-20px" } : {}
-        }
+        style={props.isHeader ? { marginLeft: "-20px" } : {}}
         className="RateItem__text RateItem__text_cell"
       >
-        {props.isHeader
-          ? "Оценка"
-          : props.isTotal
-          ?
-          <RateText class="RateItem__text_rate-clarification" average={getRate(props.averageRate)} />
-          :
-          <RateText class="RateItem__text_rate-clarification" average={getRate(props.getAverage(props.data.rates))} />}
+        {props.isHeader ? (
+          "Оценка"
+        ) : props.isTotal ? (
+          <RateText
+            class="RateItem__text_rate-clarification"
+            average={getRate(props.averageRate)}
+          />
+        ) : (
+          <RateText
+            class="RateItem__text_rate-clarification"
+            average={getRate(props.getAverage(props.data.rates))}
+          />
+        )}
       </p>
     </div>
   );

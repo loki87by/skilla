@@ -57,7 +57,8 @@ function UserBlock(props) {
               ""
             )}
             {props.persons.map((i, index) => (
-              <p className="UserBlock__name"
+              <p
+                className="UserBlock__name"
                 key={props.propsPersons ? `person-${i.id}` : `person-${index}`}
               >{`${i.name} ${i.surname}`}</p>
             ))}

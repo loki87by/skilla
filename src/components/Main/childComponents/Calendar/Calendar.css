@@ -5,6 +5,8 @@
   opacity: 0;
   visibility: hidden;
   background-color: var(--bg-color);
+  -webkit-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
 
@@ -15,12 +17,20 @@
 }
 
 .Calendar__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 .Calendar__header-button {
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
   height: max-content;
   padding: 0;
   border: none;

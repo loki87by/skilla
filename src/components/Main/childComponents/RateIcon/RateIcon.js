@@ -7,6 +7,7 @@ function RateIcon(props) {
 
   useEffect(() => {
     const array = [];
+
     for (let i = 0; i < props.average + 2; i++) {
       array.push(i);
     }

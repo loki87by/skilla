@@ -1,13 +1,21 @@
 .Filters,
 .Filters__button {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   margin-left: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
 .Filters__button-text {
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   margin-right: 8px;
   font-family: "SF Pro Display";

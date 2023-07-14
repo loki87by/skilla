@@ -2,10 +2,9 @@ import React from "react";
 import "./Sprite.css";
 
 function Sprite(props) {
-
   return (
     <svg
-    onClick={props.click}
+      onClick={props.click}
       src={props.src}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -14,10 +13,10 @@ function Sprite(props) {
       style={props.style}
       className={`${props.class} Sprite`}
     >
-    <title>{props.title}</title>
+      <title>{props.title}</title>
       <use
-      className={`${props.class}`}
-        style={{width: `${props.width}px`, height: `${props.height}px`}}
+        className={`${props.class}`}
+        style={{ width: `${props.width}px`, height: `${props.height}px` }}
         href={`${props.src}#${props.id}`}
       />
     </svg>

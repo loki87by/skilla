@@ -5,9 +5,16 @@
   padding: 8px 12px;
   margin-right: 48px;
   border-radius: 48px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   background-color: var(--bg-color);
   cursor: pointer;
@@ -37,6 +44,8 @@
   left: 0;
   z-index: 2;
   width: 124px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
   height: max-content;
   padding: 18px;
   padding-bottom: 0;
@@ -54,9 +63,16 @@
 
 .Balance__popup_data {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   height: 71px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -66,11 +82,13 @@
   padding: 13px 15px;
   border: 1px solid var(--primary-color);
   border-radius: 4px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   outline: 0 !important;
   outline-color: transparent !important;
   outline-width: 0 !important;
   outline-style: none !important;
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 123, 255, 0) !important;
   box-shadow: 0 0 0 0 rgba(0, 123, 255, 0) !important;
 }
 

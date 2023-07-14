@@ -42,6 +42,7 @@ function App() {
             setApiData(data.results);
           } else {
             let arr = data.results.slice();
+
             if (outerFilters.length > 0) {
               outerFilters.forEach((i) => {
                 if (i.key === "is") {
@@ -54,6 +55,7 @@ function App() {
                   });
                   arr = tmp;
                 }
+
                 if (i.key === "not") {
                   const tmp = arr.filter((item) => {
                     if (
@@ -68,6 +70,7 @@ function App() {
                 }
               });
             }
+
             if (innerFilters.length > 0) {
               innerFilters.forEach((i) => {
                 if (i.key === "is") {
@@ -101,6 +104,7 @@ function App() {
                     arr = tmp;
                   }
                 }
+
                 if (i.key === "not") {
                   const tmp = arr.filter((item) => {
                     if (

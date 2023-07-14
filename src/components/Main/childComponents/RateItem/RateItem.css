@@ -1,15 +1,23 @@
 .RateItem {
   width: 1337px;
   height: 57px;
-  border-bottom: 1px solid #EAF0FA;
+  border-bottom: 1px solid #eaf0fa;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
 .RateItem:first-of-type {
   height: 58px;
   margin-bottom: -6px;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
 }
 
@@ -20,6 +28,8 @@
 
 .RateItem__text {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   font-weight: 400;
   font-size: 14px;
@@ -32,8 +42,14 @@
   max-width: 200px;
   min-width: 200px;
   margin-right: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
@@ -42,6 +58,7 @@
   height: 32px;
   margin-right: 20px;
   border-radius: 50%;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -51,6 +68,7 @@
 
 .RateItem__text_total {
   padding-left: 52px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-weight: 400;
   font-size: 15px;
@@ -58,9 +76,18 @@
 }
 
 .RateItem__text_manager-data {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
   max-width: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
 }
 
@@ -68,7 +95,10 @@
   min-width: 203px;
   max-width: 203px;
   margin-right: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -84,7 +114,11 @@
 }
 
 .RateItem__text_statistic > p:first-of-type {
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
   min-width: max-content;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
   max-width: max-content;
   margin: auto;
   margin-bottom: 8px;
@@ -96,12 +130,17 @@
 }
 
 .RateItem__text_call {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
 .RateItem__text_clarification {
   margin-left: 4px;
+  -ms-flex-item-align: start;
   align-self: flex-start;
 }
 
@@ -150,13 +189,19 @@
 }
 
 .RateItem__text_rate-clarification {
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
   min-width: max-content;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
   max-width: max-content;
   margin-left: -20px;
 }
 
 .RateItem__text_header {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   white-space: break-spaces;
   line-height: 17.36px;
@@ -167,6 +212,8 @@
   top: 8px;
   right: -10px;
   height: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -186,17 +233,34 @@
   border-radius: 4px;
   border: 1px solid var(--primary-color);
   background-color: var(--bg-color);
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
   height: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
 .RateItem__contextMenu > div {
   margin-bottom: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
 }

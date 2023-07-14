@@ -39,7 +39,7 @@ function Call(props) {
         return;
       } else {
         const rates = props.rates[ind].rates;
-        const average = getAverage(rates)
+        const average = getAverage(rates);
         setRate(average);
       }
     }
@@ -149,7 +149,7 @@ function Call(props) {
 
   function initCall(phone) {
     getCallback(phone).then((res) => {
-      console.log(res);
+      alert(JSON.stringify(res));
     });
   }
 
@@ -167,7 +167,10 @@ function Call(props) {
   }
 
   function phonePrefixer(str) {
-    return `+7 (${str.slice(1, 4)}) ${str.slice(4, 7)}-${str.slice(7, 9)}-${str.slice(9, 11)}`
+    return `+7 (${str.slice(1, 4)}) ${str.slice(4, 7)}-${str.slice(
+      7,
+      9
+    )}-${str.slice(9, 11)}`;
   }
 
   return (
@@ -229,7 +232,9 @@ function Call(props) {
             <div className="Call__icon"></div>
           )}
         </div>
-        <p className="Call__phone">{phonePrefixer(props.data.partner_data.phone)}</p>
+        <p className="Call__phone">
+          {phonePrefixer(props.data.partner_data.phone)}
+        </p>
         <p className="Call__src">{props.data.source}</p>
         {audioSelect ? (
           <div className="Call__select">

@@ -6,9 +6,9 @@ main {
   background-color: var(--bg-color);
 }
 
-.sprite{
+.sprite {
   cursor: pointer;
-    --primary: var(--primary-color);
+  --primary: var(--primary-color);
 }
 
 .sprite:hover {

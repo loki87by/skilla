@@ -1,9 +1,17 @@
 .Calls {
   width: 100%;
   padding-left: 0;
+  -webkit-margin-before: 10px;
   margin-block-start: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   background-color: var(--bg-color);
 }
@@ -17,14 +25,24 @@ li {
   width: 100%;
   padding: 25px 0 20px;
   margin-left: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   color: #899cb1;
 }
 
 .Calls__item > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   font-weight: 400;
   font-size: 14px;
@@ -51,7 +69,11 @@ li {
 .Calls__item_worker {
   width: 68px;
   margin-right: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
 }
 
