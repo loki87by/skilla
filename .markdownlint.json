@@ -1,7 +1,8 @@
 {
   "MD033": {
     "allowed_elements": [
-      "details"
+      "details",
+      "summary"
     ]
   }
 }
