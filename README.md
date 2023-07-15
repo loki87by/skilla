@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# SkillaJs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Техническое задание
 
-## Available Scripts
+<details>
 
-In the project directory, you can run:
+### Требуется взять из фигмы проект и разработать часть на реакте
 
-### `npm start`
+### Данные можно взять с бека по апи [отсюда:](https://api.skilla.ru/testapi)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Тестовый токен — testtoken
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Часть из фигмы, которую берем в разработку
 
-### `npm test`
+* листинг звонков с выборкой по датам
+* выбор входящих, исходящих или всех звонков
+* проигрывание записи (если есть)
+* сортировка на клиенте
+* меню - статика без функционала, активный раздел "Звонки"
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### [Фигма тут:](https://www.figma.com/file/ZMa8t9WrBvtwL2rigfrKHS/Test-task-for-the-developer-2023?type=design&node-id=0%3A1&t=VqpmXS3vFW140ZeN-1)
 
-### `npm run build`
+</details>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Реализованный функционал
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## *В виду того, что я месяц находился в командировке, без прямого доступа к ПК,*
 
-### `npm run eject`
+## *большую часть времени приходилось работать удаленно с телефона.*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## *Из-за этого пропустил строку: "Часть из фигмы, которую берем в разработку"*
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## *По этому функционал немного превышает необходимый минимум. Далее подробно:*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* листинг звонков с выборкой по датам.
+* **Тк не было конкретных указаний, добавлен календарь для выбора произвольной даты**
+* выбор входящих, исходящих или всех звонков
+* **Аналогично настроены остальные фильтры из фигмы**
+* проигрывание записи (если есть)
+* **А так же возможность скачть как одну так и архив**
+* сортировка на клиенте
+**В макете видно что сортировка есть только в оценке звонков, она и реализована**
+* меню - статика без функционала, активный раздел "Звонки"
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Дополнительно реализован следующий функционал
 
-## Learn More
+* Всё, что кликабельно в макете, имеет отклик и в проекте
+* Реализован поиск в режиме онлайн
+**Поиск по номерам работает отлично**
+**Поиск по менеджерам нет, т.к. API отвечает ошибкой 403**
+* Реализовано оценивание звонков с последующей фильтрацией звонков по оценкам
+**Из-за отсутствия данных осуществляется нажатием на "Распознать" / "Распознать все"**
+кнопка "распознать все" появляется если отметить несколько строк
+содержащих аудио и нажать на закрыть(крестик) в правой части проигрывателя.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</details>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Запуск приложения
 
-### Code Splitting
+<details>
+- Открыть терминал
+- Скачать репозиторий командой: _git clone https://github.com/loki87by/skilla_
+- Установить зависимости командой:_npm install_
+- Запустить проект командой: _npm start_
+- Если спустя пару минут проект не открылся самостоятельно, открыть в браузере: [localhost:3000](localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Либо открыть [деплой проекта](https://loki87by.github.io/skilla/)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</details>
